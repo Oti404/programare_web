@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$sqlite_file = getenv('HOME') . '/pw_database.sqlite';
+$sqlite_file = dirname($_SERVER['DOCUMENT_ROOT']) . '/pw_database.sqlite';
 
 function getPDOConnection() {
     global $sqlite_file;
