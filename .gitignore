@@ -1,0 +1,3 @@
+# Ignora tot continutul din securitate_web, dar pastreaza folderul
+securitate_web/*
+!securitate_web/.gitkeep
