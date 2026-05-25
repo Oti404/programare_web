@@ -1,0 +1,11 @@
+=== Cursul 3 - Securitate Web ===
+
+Teme abordate:
+- OWASP Top 10
+- SQL Injection
+- Cross-Site Scripting (XSS)
+- CSRF, File Upload, Path Traversal
+- Principii de aparare
+
+Autor: Prof. Ion Popescu
+Data: 2024-10-15

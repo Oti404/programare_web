@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Editare Mașină - HTML4</title>
+</head>
+<body bgcolor="#eef2f3">
+
+    <div align="left">
+        <a href="https://www.scs.ubbcluj.ro/~ioir3747/lab1/html4/index.html" target="_self" title="Întoarcere la pagina principală">← Înapoi la Lista Auto</a>
+    </div>
+
+    <center>
+        <h1>Modificare Date Autoturism</h1>
+    </center>
+
+    <table border="1" width="80%" bgcolor="#ffffff" align="center">
+        <tr>
+            <th colspan="2" bgcolor="#4CAF50" align="center">
+                <h2>Profil Vehicul Selectat</h2>
+            </th>
+        </tr>
+        <tr>
+            <td width="40%" align="center" valign="middle">
+                <img src="https://cdn.pixabay.com/photo/2016/11/12/16/39/lamborghini-1819204_1280.jpg" alt="Fotografie Dacia Duster" width="250" height="150">
+            </td>
+            <td valign="top" bgcolor="#f9f9f9">
+                <p>
+                    <strong>Atenție:</strong> <span>Orice modificare este ireversibilă!</span><br>
+                    <b>Cod Unic:</b> AUTO-992
+                </p>
+                
+                <table border="1" width="100%">
+                    <tr>
+                        <td bgcolor="#dddddd">Vânzări luna curentă:</td>
+                        <td>12 unități</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <h3>Reguli de Editare:</h3>
+    <ul type="disc">
+        <li>Verificați cu atenție specificațiile tehnice introduse.
+            <ol type="1" start="1">
+                <li>Prețul trebuie introdus în Euro.</li>
+                <li>Nu schimbați opțiunile blocate.</li>
+            </ol>
+        </li>
+        <li>Asigurați-vă că folosiți diacriticele:
+            <ol type="a" start="1">
+                <li>ș, ț (pentru s/t cu virgulă)</li>
+                <li>ă, î, â (pentru vocale specifice)</li>
+            </ol>
+        </li>
+    </ul>
+
+    <hr>
+
+    <center>
+        <h4>Actualizare Specificații</h3>
+    </center>
+
+    <form name="formEditare" action="http://www.scs.ubbcluj.ro/edit_submit" method="post" target="_blank">
+        <fieldset>
+            <legend>Formular Modificare (Folosiți diacritice: ă, î, â, ș, ț)</legend>
+            
+            <p>
+                1. Nume Model:<br>
+                <input type="text" name="numeModel" value="Dacia Duster" size="40" maxlength="50">
+            </p>
+
+            <p>
+                2. Cod Intern Auto (Nu poate fi modificat):<br>
+                <input type="text" name="codIntern" value="DC-100" readonly size="15">
+            </p>
+
+            <p>
+                3. Preț (EUR):<br>
+                <input type="text" name="pret" value="15000" size="10">
+            </p>
+
+            <p>
+                4. Disponibilitate Stoc:<br>
+                <input type="radio" name="stoc" value="da" checked> În stoc
+                <input type="radio" name="stoc" value="nu"> Epuizat
+            </p>
+
+            <p>
+                5. Dotări opționale (bifați):<br>
+                <input type="checkbox" name="dotari" value="ac" checked> Aer Condiționat<br>
+                <input type="checkbox" name="dotari" value="gps"> Sistem Navigație<br>
+                <input type="checkbox" name="dotari" value="trapa" disabled> Trapă panoramică (Indisponibil temporar)
+            </p>
+
+            <p>
+                6. An Fabricație:<br>
+                <select name="an">
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023" selected>2023</option>
+                </select>
+            </p>
+
+            <p>
+                7. Culori Disponibile (Selectare multiplă):<br>
+                <select name="culori" multiple size="3">
+                    <option value="alb" selected>Alb Arctic</option>
+                    <option value="negru">Negru Perlat</option>
+                    <option value="rosu">Roșu Foc</option>
+                </select>
+            </p>
+
+            <p>
+                8. Descriere Vehicul (Modificați textul):<br>
+                <textarea name="descriere" rows="4" cols="50">Mașină robustă, ideală pentru drumuri off-road. Conține trusă medicală și extinctor conform legislației românești (ș, ț, ă, î, â).</textarea>
+            </p>
+
+            <p>
+                9. Încarcă o broșură nouă (PDF):<br>
+                <input type="file" name="brosuraPdf">
+            </p>
+
+            <p>
+                10. Parolă Administrator (Confirmare salvare):<br>
+                <input type="password" name="adminPass" maxlength="20" size="20">
+            </p>
+
+            <input type="hidden" name="id_masina" value="445566">
+
+            <br>
+            <center>
+                <input type="submit" value="Salvează Modificările">
+                <input type="reset" value="Anulează">
+            </center>
+
+        </fieldset>
+    </form>
+
+    <br><br><br>
+
+</body>
+</html>

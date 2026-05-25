@@ -1,0 +1,540 @@
+/* ================================================
+   STIL 2: MENIU VERTICAL (SIDEBAR) - FARA ANIMATII
+   Layout: CSS Grid (sidebar + continut principal)
+   Selectori: tip, clasa, id, descendenti, :hover, :focus,
+              :nth-child, ::before, ::after
+   ================================================ */
+
+/* Selector de TIP - Reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Selector de TIP
+   body e grid cu 2 coloane: sidebar fix (240px) + continut */
+body {
+    font-family: 'Georgia', Times, serif;
+    background-color: #eceff1;
+    color: #263238;
+    /* CSS Grid pentru layout sidebar + content */
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Selector de TIP */
+a {
+    color: #37474f;
+    text-decoration: underline;
+}
+
+/* Selectori de TIP */
+h1, h2, h3, h4, h5, h6 {
+    color: #263238;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #cfd8dc;
+    padding-bottom: 8px;
+}
+
+/* ================================================
+   SIDEBAR - MENIU VERTICAL
+   ================================================ */
+
+/* Selector de clasa
+   Header-ul (sidebar-ul) ocupa coloana 1, toate randurile */
+.app-header {
+    background-color: #37474f;
+    color: #fff;
+    padding: 24px 16px;
+    grid-column: 1;
+    grid-row: 1 / -1;  /* intinde pe toata inaltimea */
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Selector de clasa */
+.style-switcher {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Pseudo-element ::before pe .style-switcher */
+.style-switcher::before {
+    content: 'SCHIMBA STILUL:';
+    display: block;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 10px;
+}
+
+/* Selector descendent */
+.style-switcher button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    margin: 6px 0;
+    cursor: pointer;
+    font-size: 0.82em;
+    text-align: left;
+    border-radius: 3px;
+    /* FARA animatie transition - aceasta e cerinta stilului */
+}
+
+/* Pseudo-clasa :hover */
+.style-switcher button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Pseudo-element ::before pe titlul meniului */
+.main-menu::before {
+    content: 'NAVIGARE';
+    display: block;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 10px;
+}
+
+/* Selector descendent: clasa -> tip */
+.main-menu ul {
+    list-style: none;
+    /* FARA flex - meniul e vertical implicit */
+}
+
+/* Selector descendent: clasa -> tip -> tip */
+.main-menu li {
+    margin-bottom: 4px;
+}
+
+/* Selector descendent */
+.main-menu a {
+    color: #b0bec5;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    padding: 11px 14px;
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+    font-size: 0.92em;
+    /* FARA transition - nicio animatie in acest stil */
+}
+
+/* Pseudo-clasa :hover */
+.main-menu a:hover {
+    background-color: #455a64;
+    color: white;
+    border-left-color: #ffca28;
+}
+
+/* Pseudo-clasa :focus */
+.main-menu a:focus {
+    outline: 2px solid #ffca28;
+    background-color: #455a64;
+    color: white;
+}
+
+/* CSS Sprites in meniu vertical - SVG data URI */
+.main-menu a::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='20'%3E%3C!-- Home (x=0) --%3E%3Cpolygon points='10,2 18,9 18,18 13,18 13,13 7,13 7,18 2,18 2,9' fill='%23b0bec5'/%3E%3Crect x='8' y='13' width='4' height='5' fill='%23b0bec5'/%3E%3C!-- Edit (x=20) --%3E%3Cpath d='M24 14 l7-7 2 2-7 7z' fill='%23b0bec5'/%3E%3Cpolygon points='23,16 21,19 26,18' fill='%23b0bec5'/%3E%3Crect x='27' y='3' width='4' height='11' rx='1' transform='rotate(45 29 8)' fill='%23b0bec5'/%3E%3C!-- Grid (x=40) --%3E%3Crect x='41' y='3' width='5' height='5' rx='1' fill='%23b0bec5'/%3E%3Crect x='48' y='3' width='5' height='5' rx='1' fill='%23b0bec5'/%3E%3Crect x='55' y='3' width='5' height='5' rx='1' fill='%23b0bec5'/%3E%3Crect x='41' y='10' width='5' height='5' rx='1' fill='%23b0bec5'/%3E%3Crect x='48' y='10' width='5' height='5' rx='1' fill='%23b0bec5'/%3E%3Crect x='55' y='10' width='5' height='5' rx='1' fill='%23b0bec5'/%3E%3C!-- Dashboard (x=60) --%3E%3Cpath d='M70 16 A8 8 0 0 1 62 16' stroke='%23b0bec5' stroke-width='2' fill='none'/%3E%3Cline x1='70' y1='10' x2='66' y2='14' stroke='%23b0bec5' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='70' cy='16' r='1.5' fill='%23b0bec5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 80px 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+/* Selectori de clasa pentru sprite-uri */
+.icon-home::before    { background-position: 0 0; }
+.icon-edit::before    { background-position: -20px 0; }
+.icon-sprites::before { background-position: -40px 0; }
+.icon-widgets::before { background-position: -60px 0; }
+
+/* ================================================
+   CONTINUT PRINCIPAL (coloana 2)
+   ================================================ */
+
+/* Selector de clasa
+   Containerul ocupa coloana 2 */
+.container {
+    grid-column: 2;
+    margin: 30px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #cfd8dc;
+    border-radius: 4px;
+    min-height: calc(100vh - 60px);
+    align-self: start;
+}
+
+/* ================================================
+   TABELE
+   ================================================ */
+
+/* Selector de TIP */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+}
+
+/* Selector de TIP */
+th {
+    background: #37474f;
+    color: white;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Selector de TIP */
+td {
+    padding: 10px 14px;
+    border: 1px solid #eceff1;
+}
+
+/* Pseudo-clasa :nth-child */
+tr:nth-child(even) {
+    background-color: #f9fbe7;
+}
+
+/* Pseudo-clasa :hover pe selector de TIP */
+tr:hover {
+    background-color: #f1f8e9;
+}
+
+/* ================================================
+   FORMULAR
+   ================================================ */
+
+/* Selector de TIP */
+fieldset {
+    border: 1px solid #90a4ae;
+    padding: 24px;
+    background: #fafafa;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+/* Selector de TIP */
+legend {
+    font-weight: bold;
+    color: #37474f;
+    padding: 0 8px;
+    font-size: 1em;
+    font-style: italic;
+}
+
+/* Selector de atribut */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    border: 1px solid #b0bec5;
+    background-color: #fff;
+    padding: 10px 12px;
+    width: 100%;
+    display: block;
+    margin: 6px 0;
+    font-family: inherit;
+    font-size: 0.92em;
+    border-radius: 3px;
+    /* FARA transition */
+}
+
+/* Pseudo-clasa :focus */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #37474f;
+    border-color: #37474f;
+    background-color: #fafafa;
+}
+
+/* Selector de atribut */
+input[type="submit"] {
+    background-color: #37474f;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85em;
+    border-radius: 3px;
+    margin-right: 10px;
+    /* FARA animation */
+}
+
+/* Pseudo-clasa :hover */
+input[type="submit"]:hover {
+    background-color: #455a64;
+}
+
+input[type="reset"] {
+    background-color: transparent;
+    color: #b71c1c;
+    border: 1px solid #b71c1c;
+    padding: 10px 24px;
+    cursor: pointer;
+    font-size: 0.85em;
+    border-radius: 3px;
+}
+
+input[type="reset"]:hover {
+    background-color: #ffebee;
+}
+
+/* ================================================
+   DASHBOARD - WIDGETS (layout secvential, fara flex)
+   ================================================ */
+
+.dashboard-grid {
+    display: block;
+}
+
+/* Selector de clasa */
+.widget-card {
+    background: #fff;
+    border: 1px solid #90a4ae;
+    margin-bottom: 16px;
+    padding: 20px 24px;
+    border-radius: 4px;
+}
+
+/* Pseudo-element ::before pe card */
+.widget-card::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #37474f;
+    margin-bottom: 12px;
+}
+
+/* Selector descendent */
+.widget-card .card-header h4 {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #546e7a;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 8px;
+}
+
+/* Selector de clasa */
+.stat-value {
+    display: block;
+    font-size: 1.9em;
+    font-weight: bold;
+    color: #37474f;
+    line-height: 1.2;
+}
+
+/* Selector de clasa */
+.stat-label {
+    font-size: 0.82em;
+    color: #78909c;
+    display: block;
+    margin-top: 4px;
+}
+
+/* ================================================
+   PANOURI STATUS
+   ================================================ */
+
+.status-panels {
+    display: block;
+    margin-top: 20px;
+}
+
+/* Selector de clasa */
+.panel {
+    background: #fff;
+    border: 1px solid #90a4ae;
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.panel h4 {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #37474f;
+    border-bottom: 1px solid #eceff1;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+/* Selectori descendenti */
+.panel ul { list-style: none; }
+.panel ul li {
+    padding: 5px 0;
+    font-size: 0.9em;
+    border-bottom: 1px dotted #eceff1;
+}
+
+/* Selector de clasa */
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-dot.online { background-color: #4caf50; }
+.status-dot.busy   { background-color: #ff9800; }
+
+/* Selector de clasa */
+.alert-item {
+    padding: 9px 13px;
+    border-radius: 3px;
+    font-size: 0.87em;
+    margin-bottom: 8px;
+    border-left: 3px solid transparent;
+    font-style: italic;
+}
+
+.alert-item.error {
+    background-color: #ffebee;
+    border-left-color: #f44336;
+    color: #c62828;
+}
+
+.alert-item.warning {
+    background-color: #fff8e1;
+    border-left-color: #ff9800;
+    color: #e65100;
+}
+
+/* ================================================
+   PAGINA SPRITES
+   ================================================ */
+
+.sprite-demo-grid {
+    display: block;
+    margin: 20px 0;
+}
+
+/* Selector de clasa */
+.sprite-card {
+    border: 1px solid #cfd8dc;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Pseudo-clasa :hover */
+.sprite-card:hover {
+    background: #eceff1;
+}
+
+.sprite-card h3 {
+    border: none;
+    padding: 0;
+    font-size: 1em;
+    margin-bottom: 4px;
+}
+
+/* Selector de clasa */
+.sprite-icon {
+    display: block;
+    width: 36px;
+    height: 36px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='144' height='36'%3E%3C!-- Home (x=0) --%3E%3Cpolygon points='18,4 32,16 32,32 24,32 24,24 12,24 12,32 4,32 4,16' fill='%2337474f'/%3E%3Crect x='14' y='24' width='8' height='8' fill='%2337474f'/%3E%3C!-- Edit (x=36) --%3E%3Cpath d='M42 26 l13-13 4 4-13 13z' fill='%2337474f'/%3E%3Cpolygon points='41,29 37,35 47,33' fill='%2337474f'/%3E%3Crect x='50' y='6' width='7' height='19' rx='2' transform='rotate(45 53 15)' fill='%2337474f'/%3E%3C!-- Grid (x=72) --%3E%3Crect x='74' y='6' width='9' height='9' rx='1' fill='%2337474f'/%3E%3Crect x='86' y='6' width='9' height='9' rx='1' fill='%2337474f'/%3E%3Crect x='98' y='6' width='9' height='9' rx='1' fill='%2337474f'/%3E%3Crect x='74' y='18' width='9' height='9' rx='1' fill='%2337474f'/%3E%3Crect x='86' y='18' width='9' height='9' rx='1' fill='%2337474f'/%3E%3Crect x='98' y='18' width='9' height='9' rx='1' fill='%2337474f'/%3E%3C!-- Dashboard (x=108) --%3E%3Cpath d='M126 30 A14 14 0 0 1 112 30' stroke='%2337474f' stroke-width='3' fill='none'/%3E%3Cline x1='126' y1='18' x2='121' y2='24' stroke='%2337474f' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='126' cy='30' r='2.5' fill='%2337474f'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 144px 36px;
+    flex-shrink: 0;
+}
+
+/* Selectori de clasa pentru iconitele mari */
+.icon-home-large    { background-position: 0 0; }
+.icon-edit-large    { background-position: -36px 0; }
+.icon-sprites-large { background-position: -72px 0; }
+.icon-widgets-large { background-position: -108px 0; }
+
+.sprite-info {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+}
+
+.sprite-info img {
+    border: 1px solid #ccc;
+    margin: 8px 0;
+    display: block;
+    max-width: 100%;
+    background: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 12px 12px;
+}
+
+.caption {
+    font-size: 0.82em;
+    color: #777;
+    font-style: italic;
+}
+
+/* ================================================
+   SECTIUNEA TABEL LAT
+   ================================================ */
+
+.wide-table-section {
+    margin-top: 24px;
+}
+
+/* Selector de clasa */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    border: 1px solid #cfd8dc;
+}
+
+.wide-table {
+    min-width: 900px;
+}
+
+/* ================================================
+   FOOTER (coloana 2)
+   ================================================ */
+
+/* Selector de clasa */
+.app-footer {
+    grid-column: 2;
+    text-align: center;
+    padding: 20px;
+    color: #90a4ae;
+    font-size: 0.82em;
+    font-style: italic;
+    border-top: 1px solid #cfd8dc;
+    background: #fff;
+}
+
+/* Pseudo-element ::after pe footer */
+.app-footer::after {
+    content: ' | UBB Cluj-Napoca';
+    color: #b0bec5;
+}

@@ -1,0 +1,9 @@
+=== Cursul 1 - Introducere in Programare Web ===
+
+Acest curs introduce conceptele de baza ale programarii web:
+- HTML, CSS, JavaScript
+- Arhitectura client-server
+- Protocolul HTTP
+
+Autor: Prof. Ion Popescu
+Data: 2024-10-01

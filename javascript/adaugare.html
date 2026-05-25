@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adăugare Mașină Nouă - Gestiune Parc Auto</title>
+    <link rel="stylesheet" href="style_horizontal.css">
+</head>
+<body>
+    <header class="app-header">
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index5.html" class="icon-home"><span>Acasă</span></a></li>
+                <li><a href="edit5.html" class="icon-edit"><span>Adaugă/Editează</span></a></li>
+                <li><a href="sprites.html" class="icon-sprites"><span>Sprites CSS</span></a></li>
+                <li><a href="widgets.html" class="icon-widgets"><span>Dashboard</span></a></li>
+                <li><a href="adaugare.html" class="icon-add"><span>Adăugare</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Adăugare Mașină Nouă în Parc</h1>
+        <h2>Completați datele vehiculului și ale vânzătorului</h2>
+
+        <form id="formAdaugare" name="formAdaugare"
+              action="http://www.scs.ubbcluj.ro/adaugare_submit5"
+              method="post" enctype="multipart/form-data" novalidate>
+            <fieldset>
+                <legend>Date Vânzător</legend>
+                <table>
+                    <tr>
+                        <td><label for="numeVanzator">Nume Complet Vânzător: *</label></td>
+                        <td>
+                            <input type="text" id="numeVanzator" name="numeVanzator"
+                                   size="35" maxlength="60" placeholder="ex: Popescu Ion">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="emailVanzator">Adresă Email: *</label></td>
+                        <td>
+                            <input type="email" id="emailVanzator" name="emailVanzator"
+                                   size="35" placeholder="ex: vanzator@email.ro">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="telefon">Telefon Contact: *</label></td>
+                        <td>
+                            <input type="tel" id="telefon" name="telefon"
+                                   size="20" placeholder="ex: 0740 123 456">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="parolaAdmin">Parolă Administrator: *</label></td>
+                        <td>
+                            <input type="password" id="parolaAdmin" name="parolaAdmin"
+                                   maxlength="30" size="20" placeholder="Min. 6 caractere">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Date Vehicul</legend>
+                <table>
+                    <!-- Dependența A: Marcă → Model (populat dinamic din data.js) -->
+                    <tr>
+                        <td><label for="marcaAuto">Marcă: *</label></td>
+                        <td>
+                            <select id="marcaAuto" name="marcaAuto">
+                                <option value="">-- Selectați marca --</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="modelAuto">Model: *</label></td>
+                        <td>
+                            <select id="modelAuto" name="modelAuto">
+                                <option value="">-- Selectați mai întâi marca --</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="dataInmatriculare">Data Înmatriculării: *</label></td>
+                        <td>
+                            <input type="date" id="dataInmatriculare" name="dataInmatriculare">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="kmAuto">Kilometraj actual: *</label></td>
+                        <td>
+                            <input type="number" id="kmAuto" name="kmAuto"
+                                   min="0" max="999999" step="1000" value="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="pretAuto">Preț de vânzare (EUR): *</label></td>
+                        <td>
+                            <input type="number" id="pretAuto" name="pretAuto"
+                                   min="100" max="1000000" step="100" value="10000">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tip Combustibil: *</td>
+                        <td>
+                            <input type="radio" id="combBenz" name="combustibil" value="benzina">
+                            <label for="combBenz">Benzină</label>
+                            <input type="radio" id="combDiesel" name="combustibil" value="diesel">
+                            <label for="combDiesel">Diesel</label>
+                            <input type="radio" id="combHibrid" name="combustibil" value="hibrid" checked>
+                            <label for="combHibrid">Hibrid</label>
+                            <input type="radio" id="combElectric" name="combustibil" value="electric">
+                            <label for="combElectric">Electric</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dotări incluse:</td>
+                        <td>
+                            <input type="checkbox" id="dotAC" name="dotari" value="ac" checked>
+                            <label for="dotAC">Aer Condiționat</label><br>
+                            <input type="checkbox" id="dotGPS" name="dotari" value="gps">
+                            <label for="dotGPS">Sistem Navigație GPS</label><br>
+                            <input type="checkbox" id="dotCamera" name="dotari" value="camera">
+                            <label for="dotCamera">Cameră Marsarier</label><br>
+                            <input type="checkbox" id="dotScaune" name="dotari" value="scaune_incalzite">
+                            <label for="dotScaune">Scaune Încălzite</label><br>
+                            <input type="checkbox" id="dotTrapa" name="dotari" value="trapa" disabled>
+                            <label for="dotTrapa">Trapă Panoramică (Indisponibil)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="discountRange">Reducere aplicată:</label></td>
+                        <td>
+                            <input type="range" id="discountRange" name="discount"
+                                   min="0" max="30" step="1" value="0"
+                                   oninput="document.getElementById('discountVal').textContent=this.value+'%'">
+                            <span id="discountVal">0%</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="culoareAuto">Culoare vehicul:</label></td>
+                        <td>
+                            <input type="color" id="culoareAuto" name="culoareAuto" value="#ffffff">
+                            <span style="margin-left:8px; font-size:0.85rem; color:#7f8c8d;">Alegeți culoarea</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="pozaAuto">Fotografie vehicul:</label></td>
+                        <td>
+                            <input type="file" id="pozaAuto" name="pozaAuto" accept="image/*">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Localizare și Note</legend>
+                <table>
+                    <!-- Dependența B: Județ → Localitate (populat dinamic din data.js) -->
+                    <tr>
+                        <td><label for="judetAuto">Județ: *</label></td>
+                        <td>
+                            <select id="judetAuto" name="judetAuto">
+                                <option value="">-- Selectați județul --</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="localitateAuto">Localitate: *</label></td>
+                        <td>
+                            <select id="localitateAuto" name="localitateAuto">
+                                <option value="">-- Selectați mai întâi județul --</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="observatii">Observații suplimentare:</label></td>
+                        <td>
+                            <textarea id="observatii" name="observatii" rows="4" cols="45"
+                                placeholder="Descrieți starea vehiculului, istoricul service, etc."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="certificatConformitate">Certificat conformitate (PDF):</label></td>
+                        <td>
+                            <input type="file" id="certificatConformitate"
+                                   name="certificat" accept=".pdf,.doc,.docx">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="tipOperatie" value="adaugare_noua">
+                            <input type="submit" value="Adaugă Mașina în Sistem">
+                            <input type="reset" value="Golește Formularul">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Gestiune Parc Auto - Laborator PW</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="validation.js"></script>
+    <script>
+        /* ---- Dependența A: Marcă → Model ---- */
+        (function () {
+            var marcaEl = document.getElementById("marcaAuto");
+            var modelEl = document.getElementById("modelAuto");
+
+            /* Populare mărci din data.js */
+            Object.keys(MARCI_MODELE).forEach(function (m) {
+                var opt = document.createElement("option");
+                opt.value = m; opt.textContent = m;
+                marcaEl.appendChild(opt);
+            });
+
+            marcaEl.addEventListener("change", function () {
+                var marca = this.value;
+                modelEl.innerHTML = "<option value=''>-- Selectați modelul --</option>";
+                if (MARCI_MODELE[marca]) {
+                    MARCI_MODELE[marca].forEach(function (m) {
+                        var opt = document.createElement("option");
+                        opt.value = m; opt.textContent = m;
+                        modelEl.appendChild(opt);
+                    });
+                    modelEl.disabled = false;
+                } else {
+                    modelEl.disabled = true;
+                }
+            });
+        })();
+
+        /* ---- Dependența B: Județ → Localitate ---- */
+        (function () {
+            var judetEl     = document.getElementById("judetAuto");
+            var localEl     = document.getElementById("localitateAuto");
+
+            /* Populare județe din data.js */
+            Object.keys(JUDETE_LOCALITATI).forEach(function (j) {
+                var opt = document.createElement("option");
+                opt.value = j; opt.textContent = j;
+                judetEl.appendChild(opt);
+            });
+
+            judetEl.addEventListener("change", function () {
+                var judet = this.value;
+                localEl.innerHTML = "<option value=''>-- Selectați localitatea --</option>";
+                if (JUDETE_LOCALITATI[judet]) {
+                    JUDETE_LOCALITATI[judet].forEach(function (loc) {
+                        var opt = document.createElement("option");
+                        opt.value = loc; opt.textContent = loc;
+                        localEl.appendChild(opt);
+                    });
+                    localEl.disabled = false;
+                } else {
+                    localEl.disabled = true;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
+

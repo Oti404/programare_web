@@ -1,0 +1,10 @@
+=== Cursul 2 - Baze de Date ===
+
+Teme abordate:
+- Modelul relational
+- SQL: SELECT, INSERT, UPDATE, DELETE
+- Normalizare (1NF, 2NF, 3NF)
+- Tranzactii si ACID
+
+Autor: Prof. Ion Popescu
+Data: 2024-10-08

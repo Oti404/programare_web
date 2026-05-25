@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editare Mașină - HTML5</title>
+    <link id="theme-style" rel="stylesheet" href="style_responsive.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="style-switcher">
+            <span>Alege stil:</span>
+            <button onclick="document.getElementById('theme-style').href='style_horizontal.css'">Orizontal</button>
+            <button onclick="document.getElementById('theme-style').href='style_vertical.css'">Vertical</button>
+            <button onclick="document.getElementById('theme-style').href='style_responsive.css'">Responsive</button>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index5.html" class="icon-home"><span>Acasă</span></a></li>
+                <li><a href="edit5.html" class="icon-edit"><span>Adaugă/Editează</span></a></li>
+                <li><a href="sprites.html" class="icon-sprites"><span>Sprites CSS</span></a></li>
+                <li><a href="widgets.html" class="icon-widgets"><span>Dashboard</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+    <div title="Navigare sistem">
+        <a href="https://www.scs.ubbcluj.ro/~ioir3747/lab1/html5/index.html" target="_self">← Înapoi la Lista Auto (HTML5)</a>
+    </div>
+
+    <h1>Modificare Date Autoturism</h1>
+    <h2>Profil Vehicul Selectat</h2>
+    <h3>Reguli de Editare</h3>
+    <h4>Atenție la specificațiile tehnice</h4>
+    <h5>Diacritice necesare: ă, î, â, ș, ț</h5>
+    <h6>Vă rugăm verificați datele!</h6>
+
+    <table border="1">
+        <tr>
+            <th colspan="2">Informații Curente</th>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="https://cdn.pixabay.com/photo/2016/11/12/16/39/lamborghini-1819204_1280.jpg" alt="Fotografie Dacia Duster" width="250" height="150">
+            </td>
+            <td>
+                <p>
+                    <strong>Atenție:</strong> <span>Orice modificare este ireversibilă!</span><br>
+                    <b>Cod Unic:</b> AUTO-992
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table border="1">
+                    <tr>
+                        <td>Vânzări luna curentă:</td>
+                        <td>12 unități</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <ul>
+        <li>Verificați cu atenție specificațiile:
+            <ol type="1" start="1">
+                <li>Prețul trebuie introdus în Euro.</li>
+                <li>Nu schimbați opțiunile blocate.</li>
+            </ol>
+        </li>
+        <li>Asigurați-vă că folosiți diacriticele:
+            <ol type="a" start="1">
+                <li>ș, ț (pentru s/t cu virgulă)</li>
+                <li>ă, î, â (pentru vocale specifice)</li>
+            </ol>
+        </li>
+    </ul>
+
+    <hr>
+
+    <form name="formEditare" action="http://www.scs.ubbcluj.ro/edit_submit5" method="post" target="_blank">
+        <fieldset>
+            <legend>Formular Modificare Date (HTML5)</legend>
+
+            <table border="1">
+                <tr>
+                    <td>Nume Model:</td>
+                    <td><input type="text" name="numeModel" value="Dacia Duster" size="40" maxlength="50"></td>
+                </tr>
+                <tr>
+                    <td>Cod Intern (Blocat):</td>
+                    <td><input type="text" name="codIntern" value="DC-100" readonly size="15"></td>
+                </tr>
+                <tr>
+                    <td>Preț (EUR) [Maxim 50.000, pas 100]:</td>
+                    <td><input type="number" name="pret" value="15000" max="50000" step="100"></td>
+                </tr>
+                <tr>
+                    <td>Disponibilitate Stoc:</td>
+                    <td>
+                        <input type="radio" name="stoc" value="da" checked> În stoc
+                        <input type="radio" name="stoc" value="nu"> Epuizat
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dotări opționale (bifați):</td>
+                    <td>
+                        <input type="checkbox" name="dotari" value="ac" checked> Aer Condiționat<br>
+                        <input type="checkbox" name="dotari" value="gps"> Sistem Navigație<br>
+                        <input type="checkbox" name="dotari" value="trapa" disabled> Trapă panoramică (Indisponibil)
+                    </td>
+                </tr>
+                <tr>
+                    <td>An Fabricație:</td>
+                    <td>
+                        <select name="an">
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023" selected>2023</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Culori Disponibile:</td>
+                    <td>
+                        <select name="culori" multiple size="3">
+                            <option value="alb" selected>Alb Arctic</option>
+                            <option value="negru">Negru Perlat</option>
+                            <option value="rosu">Roșu Foc</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descriere Vehicul:</td>
+                    <td><textarea name="descriere" rows="4" cols="50">Mașină robustă. Conține trusă medicală (ș, ț, ă, î, â).</textarea></td>
+                </tr>
+                <tr>
+                    <td>Încarcă broșură (PDF):</td>
+                    <td><input type="file" name="brosuraPdf"></td>
+                </tr>
+                <tr>
+                    <td>Parolă Administrator:</td>
+                    <td><input type="password" name="adminPass" maxlength="20" size="20"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="hidden" name="id_masina" value="445566">
+                        <input type="submit" value="Salvează Modificările">
+                        <input type="reset" value="Anulează">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    </main>
+</body>
+</html>

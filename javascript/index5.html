@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestiune Parc Auto - HTML5</title>
+    <link rel="stylesheet" href="style_horizontal.css">
+</head>
+
+<body>
+    <header class="app-header">
+
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index5.html" class="icon-home"><span>Acasă</span></a></li>
+                <li><a href="edit5.html" class="icon-edit"><span>Adaugă/Editează</span></a></li>
+                <li><a href="sprites.html" class="icon-sprites"><span>Sprites CSS</span></a></li>
+                <li><a href="widgets.html" class="icon-widgets"><span>Dashboard</span></a></li>
+                <li><a href="adaugare.html" class="icon-add"><span>Adăugare</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ======== CERINȚA 3: CAROUSEL ======== -->
+    <section class="carousel-section" aria-label="Carousel mașini">
+        <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-track" id="carouselTrack"></div>
+            <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Slide anterior">&#8249;</button>
+            <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Slide următor">&#8250;</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <main class="container">
+    <div title="Sistem Principal">
+        <h1>Gestiune Mașini - Panou Administrator (HTML5)</h1>
+        <h2>Inventar și Vânzări</h2>
+        <h3>Secțiunea Vehicule Noi</h3>
+        <h4>Atenție la datele introduse</h4>
+        <h5>Folosiți diacritice: ă, î, â, ș, ț</h5>
+        <h6>Vă mulțumim!</h6>
+
+        <p>
+            Aici putem <strong>adăuga</strong>, <b>modifica</b> și programa mașini în service.<br>
+            <span>Platformă optimizată pentru noile standarde web.</span>
+        </p>
+    </div>
+
+    <!-- Tabel static cu imagini (Lab 4 - păstrat) -->
+    <table>
+        <tr>
+            <th colspan="3">Lista Mașinilor din Parc</th>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="masina.jpg" alt="Imagine mașină" width="200" height="100">
+            </td>
+            <td colspan="2">Date Tehnice</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Marcă</td>
+                        <td>Dacia</td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>Duster</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <a href="edit5.html" target="_blank">Modifică Mașina</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="masina.jpg" alt="Imagine mașină" width="200" height="100">
+            </td>
+            <td colspan="2">Date Tehnice</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Marcă2</td>
+                        <td>Dacia2</td>
+                    </tr>
+                    <tr>
+                        <td>Model2</td>
+                        <td>Duster2</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <a href="edit5.html" target="_blank">Modifică Mașina</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="masina.jpg" alt="Imagine mașină" width="200" height="100">
+            </td>
+            <td colspan="2">Date Tehnice</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Marcă3</td>
+                        <td>Dacia3</td>
+                    </tr>
+                    <tr>
+                        <td>Model3</td>
+                        <td>Duster3</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <a href="edit5.html" target="_blank">Modifică Mașina</a>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- ======== CERINȚA 5: LISTE COLAPSABILE ======== -->
+    <ul class="collapsible-list">
+        <li>Categoriile noastre auto:
+            <ol type="A" start="1">
+                <li>Sedan</li>
+                <li>Hatchback</li>
+                <li>SUV</li>
+            </ol>
+        </li>
+        <li>Servicii pentru clienți:
+            <ol type="I" start="1">
+                <li>Service Auto
+                    <ul>
+                        <li>Schimb ulei</li>
+                        <li>Diagnoză</li>
+                    </ul>
+                </li>
+                <li>Consiliere Vanzări</li>
+            </ol>
+        </li>
+    </ul>
+
+    <hr>
+
+    <!-- ======== CERINȚA 1: FORMULAR + VALIDARE ======== -->
+    <form id="formularService" name="formularService" action="http://www.scs.ubbcluj.ro/test5"
+          method="post" enctype="multipart/form-data" novalidate>
+        <fieldset>
+            <legend>Adăugare Mașină în Service &amp; Recenzie (HTML5)</legend>
+
+            <table>
+                <tr>
+                    <td><label for="numeClient">Nume Client:</label></td>
+                    <td><input type="text" id="numeClient" name="numeClient" size="30" maxlength="50"
+                               placeholder="Numele dumneavoastră"></td>
+                </tr>
+                <tr>
+                    <td>Marcă Blocată:</td>
+                    <td><input type="text" name="marcaFixa" value="Dacia" readonly size="20"></td>
+                </tr>
+                <tr>
+                    <td><label for="parola">Parolă cont:</label></td>
+                    <td><input type="password" id="parola" name="parola" size="20" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td>Stare Mașină:</td>
+                    <td>
+                        <input type="radio" id="stareNou" name="stareAuto" value="nou" checked>
+                        <label for="stareNou">Nouă</label>
+                        <input type="radio" id="stareRulata" name="stareAuto" value="rulata">
+                        <label for="stareRulata">Rulată</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Servicii dorite:</td>
+                    <td>
+                        <input type="checkbox" id="servUlei" name="serv" value="ulei" checked>
+                        <label for="servUlei">Ulei</label>
+                        <input type="checkbox" id="servFrane" name="serv" value="frane">
+                        <label for="servFrane">Frâne</label>
+                        <input type="checkbox" id="servMotor" name="serv" value="motor" disabled>
+                        <label for="servMotor">Motor (Indisponibil)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="kmService">Kilometraj Actual:</label></td>
+                    <td><input type="number" id="kmService" name="km" max="500000" step="1000" value="10000"></td>
+                </tr>
+                <tr>
+                    <td><label for="mecanic">Mecanic alocat:</label></td>
+                    <td>
+                        <select id="mecanic" name="mecanic">
+                            <option value="m1" selected>Popescu Ion (ă, î, â)</option>
+                            <option value="m2">Ionescu Vasile (ș, ț)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="probleme">Probleme semnalate:</label></td>
+                    <td>
+                        <select id="probleme" name="probleme" multiple size="4">
+                            <option value="p1">Bătăi suspensie</option>
+                            <option value="p2">Martor bord aprins</option>
+                            <option value="p3">Fum eșapament</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pozaBord">Fotografie Bord:</label></td>
+                    <td><input type="file" id="pozaBord" name="pozaBord"></td>
+                </tr>
+                <tr>
+                    <td><label for="recenzie">Recenzia clientului:</label></td>
+                    <td><textarea id="recenzie" name="recenzie" cols="40"
+                            rows="5">Vă rugăm lăsați o recenzie aici folosind diacritice: ș, ț, ă, î, â.</textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="hidden" name="idClient" value="888999">
+                        <input type="submit" value="Salvează Datele">
+                        <input type="reset" value="Șterge Formularul">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <!-- ======== CERINȚA 4a: TABEL CLASIC SORTABIL ======== -->
+    <section class="sortable-section">
+        <h2>Inventar Mașini — Tabel Sortabil</h2>
+        <p class="section-hint">Click pe antetul coloanei pentru sortare ↑↓</p>
+        <div class="table-responsive-wrapper">
+            <table class="wide-table sortable-table" id="sortableTable">
+                <thead id="sortableHead"></thead>
+                <tbody id="sortableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ======== CERINȚA 4b: TABEL VERTICAL SORTABIL ======== -->
+    <section class="sortable-section">
+        <h2>Tabel Vertical Sortabil</h2>
+        <p class="section-hint">Click pe proprietatea din prima coloană pentru sortare coloane ↑↓</p>
+        <div class="table-responsive-wrapper">
+            <div id="verticalTableWrapper"></div>
+        </div>
+    </section>
+
+    <!-- ======== CERINȚA 6: CALCULATOR PREȚ LIVE (Funcționalitate originală) ======== -->
+    <section class="calculator-section" id="calcSection">
+        <h2>🧮 Calculator Preț Estimativ</h2>
+        <p class="section-hint">Selectați opțiunile și prețul se actualizează automat în timp real.</p>
+
+        <div class="calc-layout">
+            <div class="calc-controls">
+                <div class="calc-field">
+                    <label for="calcMarca">Marcă:</label>
+                    <select id="calcMarca">
+                        <option value="">-- Selectați marca --</option>
+                    </select>
+                </div>
+                <div class="calc-field">
+                    <label for="calcModel">Model:</label>
+                    <select id="calcModel">
+                        <option value="">-- Selectați mai întâi marca --</option>
+                    </select>
+                </div>
+                <div class="calc-field">
+                    <label for="calcAn">An fabricație: <strong id="calcAnLabel">2020</strong></label>
+                    <input type="range" id="calcAn" min="2010" max="2024" step="1" value="2020">
+                </div>
+                <div class="calc-field">
+                    <label for="calcKm">Kilometraj: <strong id="calcKmLabel">0 km</strong></label>
+                    <input type="range" id="calcKm" min="0" max="300000" step="5000" value="0">
+                </div>
+                <div class="calc-field">
+                    <label>Dotări incluse:</label>
+                    <div class="calc-checkboxes">
+                        <label><input type="checkbox" id="calc_ac"> Aer Condiționat (+800 €)</label>
+                        <label><input type="checkbox" id="calc_gps"> GPS (+600 €)</label>
+                        <label><input type="checkbox" id="calc_trapa"> Trapă (+1.200 €)</label>
+                        <label><input type="checkbox" id="calc_camera"> Cameră Marsarier (+500 €)</label>
+                        <label><input type="checkbox" id="calc_scaune"> Scaune Încălzite (+700 €)</label>
+                        <label><input type="checkbox" id="calc_pilot"> Pilot Automat (+1.500 €)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-result">
+                <div class="price-display" id="calcDisplay">
+                    <span class="price-label">Preț Estimat</span>
+                    <span class="price-value" id="calcPretFinal">0 €</span>
+                    <span class="price-note">*Estimare orientativă, fără garanții</span>
+                </div>
+
+                <div class="price-breakdown">
+                    <h3>Detaliere preț</h3>
+                    <div class="price-bar-row" id="barBaza">
+                        <span class="bar-name">Preț bază model</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                        <span class="bar-label">0 €</span>
+                    </div>
+                    <div class="price-bar-row depreciere" id="barDeprecAn">
+                        <span class="bar-name">Depreciere an</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                        <span class="bar-label">-0 €</span>
+                    </div>
+                    <div class="price-bar-row depreciere" id="barDeprecKm">
+                        <span class="bar-name">Depreciere km</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                        <span class="bar-label">-0 €</span>
+                    </div>
+                    <div class="price-bar-row dotari" id="barDotari">
+                        <span class="bar-name">Dotări</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                        <span class="bar-label">+0 €</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Gestiune Parc Auto - Laborator PW</p>
+    </footer>
+
+    <!-- JS: data.js trebuie încarcat primul -->
+    <script src="data.js"></script>
+    <script src="validation.js"></script>
+    <script src="carousel.js"></script>
+    <script src="table.js"></script>
+    <script src="lists.js"></script>
+    <script src="original.js"></script>
+</body>
+
+</html>

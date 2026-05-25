@@ -1,0 +1,604 @@
+/* ================================================
+   STIL 1: MENIU ORIZONTAL + ANIMATII CSS
+   Selectori utilizati: tip, clasa, id, descendenti,
+   pseudo-clase (:hover, :focus), pseudo-elemente (::before, ::after)
+   ================================================ */
+
+/* Selector de TIP - Reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Selector de TIP */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Selector de TIP */
+a {
+    color: #1a237e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1a237e;
+    margin-bottom: 15px;
+}
+
+/* Selector de clasa */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* ================================================
+   HEADER & MENIU ORIZONTAL (Flexbox)
+   ================================================ */
+
+/* Selector de clasa */
+.app-header {
+    background-color: #1a237e;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Selector de clasa */
+.style-switcher {
+    margin-bottom: 10px;
+    font-size: 0.85em;
+}
+
+/* Selector descendent: clasa -> tip */
+.style-switcher span {
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 8px;
+}
+
+/* Selector descendent: clasa -> tip */
+.style-switcher button {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 4px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.85em;
+    transition: background 0.3s;
+}
+
+/* Pseudo-clasa :hover pe selector descendent */
+.style-switcher button:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Selector descendent: clasa -> tip -> tip */
+.main-menu ul {
+    list-style: none;
+    display: flex;       /* FLEXBOX - cerint cerinta */
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px;
+}
+
+/* Selector descendent */
+.main-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 8px 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* ANIMATIE CSS - transition cu cubic-bezier */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                background-color 0.3s ease;
+}
+
+/* Pseudo-clasa :hover si :focus */
+.main-menu a:hover,
+.main-menu a:focus {
+    background-color: #3949ab;
+    transform: scale(1.08);
+    outline: none;
+}
+
+/* ================================================
+   CSS SPRITES - implementare cu SVG data URI
+   Un singur fisier imagine (SVG inline), 4 icoane la pozitii cunoscute
+   Fiecare icoana: 20x20px, sprite total: 80x20px
+   ================================================ */
+
+/* PSEUDO-ELEMENT ::before pe selector de clasa */
+.main-menu a::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* CSS Sprite: un singur SVG cu 4 icoane aliniate orizontal */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='20'%3E%3C!-- Icon 1: Home (x=0) --%3E%3Cpolygon points='10,2 18,9 18,18 13,18 13,13 7,13 7,18 2,18 2,9' fill='white'/%3E%3Crect x='8' y='13' width='4' height='5' fill='white'/%3E%3C!-- Icon 2: Edit/pencil (x=20) --%3E%3Crect x='22' y='4' width='10' height='3' rx='1' transform='rotate(45 27 5.5)' fill='white'/%3E%3Cpath d='M24 14 l7-7 2 2-7 7z' fill='white'/%3E%3Cpolygon points='23,16 21,19 26,18' fill='white'/%3E%3C!-- Icon 3: Grid/sprites (x=40) --%3E%3Crect x='41' y='3' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='48' y='3' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='55' y='3' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='41' y='10' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='48' y='10' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='55' y='10' width='5' height='5' rx='1' fill='white'/%3E%3C!-- Icon 4: Dashboard (x=60) --%3E%3Cpath d='M70 16 A8 8 0 0 1 62 16' stroke='white' stroke-width='2' fill='none'/%3E%3Cline x1='70' y1='10' x2='66' y2='14' stroke='white' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='70' cy='16' r='1.5' fill='white'/%3E%3Cline x1='63' y1='12' x2='65' y2='14' stroke='white' stroke-width='1.2' stroke-linecap='round'/%3E%3Cline x1='77' y1='12' x2='75' y2='14' stroke='white' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 80px 20px;
+    flex-shrink: 0;
+}
+
+/* Selectori de clasa - pozitia fiecarei iconite in sprite */
+.icon-home::before    { background-position: 0 0; }
+.icon-edit::before    { background-position: -20px 0; }
+.icon-sprites::before { background-position: -40px 0; }
+.icon-widgets::before { background-position: -60px 0; }
+
+/* ================================================
+   TABELE
+   ================================================ */
+
+/* Selector de TIP */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+}
+
+/* Selector de TIP combinat */
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+/* Selector de TIP */
+th {
+    background-color: #1a237e;
+    color: white;
+    font-weight: 600;
+}
+
+/* Pseudo-clasa :nth-child */
+tr:nth-child(even) {
+    background-color: #f5f7ff;
+}
+
+tr:hover {
+    background-color: #e8eaf6;
+}
+
+/* ================================================
+   FORMULAR - CERINTA OBLIGATORIE
+   ================================================ */
+
+/* Selector de TIP */
+fieldset {
+    border: 2px solid #1a237e;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+/* Selector de TIP */
+legend {
+    font-weight: bold;
+    color: #1a237e;
+    padding: 0 10px;
+    font-size: 1.1em;
+}
+
+/* Selector de atribut */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95em;
+    display: block;
+    background-color: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Pseudo-clasa :focus */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #3949ab;
+    box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+
+/* Selectori de atribut pentru butoane */
+input[type="submit"],
+input[type="reset"] {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: filter 0.3s, transform 0.2s;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    margin-right: 10px;
+}
+
+input[type="reset"] {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Pseudo-clasa :hover pe selectori de atribut */
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+
+/* ================================================
+   ANIMATII @keyframes
+   ================================================ */
+
+/* ANIMATIE 1: Pulse pe card la hover */
+@keyframes pulse {
+    0%   { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    50%  { transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+}
+
+/* ANIMATIE 2: Slide-in la incarcarea paginii */
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Selector de clasa.clasa cu animatie */
+.widget-card.stats-card:hover {
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.app-header {
+    animation: slideInDown 0.5s ease-out;
+}
+
+/* ================================================
+   DASHBOARD - WIDGETS (Flexbox)
+   ================================================ */
+
+.dashboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Selector de clasa */
+.widget-card {
+    flex: 1 1 calc(33.33% - 20px);
+    min-width: 200px;
+    background: #e8eaf6;
+    border-left: 5px solid #1a237e;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s;
+}
+
+/* Selector descendent */
+.widget-card .card-header h4 {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #5c6bc0;
+    margin-bottom: 12px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2.2em;
+    font-weight: 800;
+    color: #1a237e;
+    line-height: 1.1;
+}
+
+/* Selector de clasa */
+.stat-label {
+    font-size: 0.85em;
+    color: #7986cb;
+    margin-top: 6px;
+    display: block;
+}
+
+/* ================================================
+   PANOURI DE STATUS (Status Panels)
+   ================================================ */
+
+.status-panels {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Selector de clasa */
+.panel {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+.panel h4 {
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: #1a237e;
+    border-bottom: 1px solid #e8eaf6;
+    padding-bottom: 8px;
+}
+
+/* Selectori descendenti */
+.panel ul { list-style: none; }
+.panel ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 0.9em;
+}
+
+/* Selector de clasa pentru punct de status */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Selectori de clasa modificatori */
+.status-dot.online { background-color: #4caf50; }
+.status-dot.busy   { background-color: #ff9800; }
+
+/* Selector de clasa pentru alerte */
+.alert-item {
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 0.88em;
+    margin-bottom: 8px;
+    border-left: 4px solid transparent;
+}
+
+/* Pseudo-element ::after pe alert */
+.alert-item::after {
+    content: ' ●';
+    font-size: 0.8em;
+}
+
+.alert-item.error {
+    background-color: #ffebee;
+    border-left-color: #f44336;
+    color: #c62828;
+}
+
+.alert-item.warning {
+    background-color: #fff8e1;
+    border-left-color: #ff9800;
+    color: #e65100;
+}
+
+/* ================================================
+   PAGINA SPRITES
+   ================================================ */
+
+.sprite-demo-grid {
+    display: flex;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.sprite-card {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    border: 1px dashed #9fa8da;
+    padding: 24px 16px;
+    border-radius: 8px;
+    background: #f5f7ff;
+    transition: background 0.3s, transform 0.3s;
+}
+
+/* Pseudo-clasa :hover pe selector de clasa */
+.sprite-card:hover {
+    background: #e8eaf6;
+    transform: translateY(-3px);
+}
+
+.sprite-card h3 {
+    margin-top: 12px;
+    font-size: 1em;
+    color: #3949ab;
+}
+
+/* Selector de clasa - iconite mari pentru pagina Sprites Demo */
+.sprite-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    /* Acelasi SVG sprite sheet, pozitia controleaza ce icoana se vede */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='40'%3E%3C!-- Home (x=0) --%3E%3Cpolygon points='20,5 36,18 36,36 26,36 26,26 14,26 14,36 4,36 4,18' fill='%235c6bc0'/%3E%3Crect x='15' y='26' width='10' height='10' fill='%235c6bc0'/%3E%3C!-- Edit (x=40) --%3E%3Cpath d='M48 28 l14-14 4 4-14 14z' fill='%235c6bc0'/%3E%3Cpolygon points='46,31 43,38 52,36' fill='%235c6bc0'/%3E%3Crect x='58' y='8' width='6' height='18' rx='2' transform='rotate(45 61 17)' fill='%235c6bc0'/%3E%3C!-- Grid (x=80) --%3E%3Crect x='83' y='7' width='9' height='9' rx='1' fill='%235c6bc0'/%3E%3Crect x='95' y='7' width='9' height='9' rx='1' fill='%235c6bc0'/%3E%3Crect x='107' y='7' width='9' height='9' rx='1' fill='%235c6bc0'/%3E%3Crect x='83' y='19' width='9' height='9' rx='1' fill='%235c6bc0'/%3E%3Crect x='95' y='19' width='9' height='9' rx='1' fill='%235c6bc0'/%3E%3Crect x='107' y='19' width='9' height='9' rx='1' fill='%235c6bc0'/%3E%3C!-- Dashboard (x=120) --%3E%3Cpath d='M140 33 A16 16 0 0 1 124 33' stroke='%235c6bc0' stroke-width='3' fill='none'/%3E%3Cline x1='140' y1='20' x2='135' y2='27' stroke='%235c6bc0' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='140' cy='33' r='3' fill='%235c6bc0'/%3E%3Cline x1='124' y1='22' x2='128' y2='27' stroke='%235c6bc0' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='156' y1='22' x2='152' y2='27' stroke='%235c6bc0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 160px 40px;
+    margin: 0 auto 8px;
+}
+
+/* Selectori de clasa - pozitia in sprite */
+.icon-home-large    { background-position: 0 0; }
+.icon-edit-large    { background-position: -40px 0; }
+.icon-sprites-large { background-position: -80px 0; }
+.icon-widgets-large { background-position: -120px 0; }
+
+.sprite-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sprite-info img {
+    border: 1px solid #ccc;
+    margin: 10px auto;
+    display: block;
+    max-width: 100%;
+    background: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 12px 12px;
+}
+
+.caption {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 8px;
+}
+
+/* ================================================
+   SECTIUNEA TABEL LAT (wide-table)
+   ================================================ */
+
+.wide-table-section {
+    margin-top: 30px;
+}
+
+.table-responsive-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Selector de clasa */
+.wide-table {
+    min-width: 900px;
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+
+.app-footer {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-size: 0.85em;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 40px;
+}
+
+/* Pseudo-element ::before pe footer */
+.app-footer::before {
+    content: '🚗 ';
+}
+.icon-add::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cline x1='9' y1='2' x2='9' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3Cline x1='2' y1='9' x2='16' y2='9' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-size: 18px 18px; background-position: 0 0; }
+
+/* CERINTA 1 - VALIDARE */
+.field-error { border: 2px solid #c0392b !important; background: #fdecea !important; box-shadow: 0 0 0 3px rgba(192,57,43,0.15) !important; }
+.field-ok    { border: 2px solid #27ae60 !important; background: #eafaf1 !important; }
+.error-msg   { display: block; color: #c0392b; font-size: 0.75em; margin-top: 3px; font-weight: 600; }
+
+/* CERINTA 3 - CAROUSEL */
+.carousel-section { width: 100%; overflow: hidden; background: #1a237e; }
+.carousel-container { position: relative; width: 100%; height: 320px; overflow: hidden; }
+.carousel-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+.carousel-slide { flex: 0 0 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-decoration: none; position: relative; }
+.carousel-slide::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.25); transition: background 0.25s; }
+.carousel-slide:hover::after { background: rgba(0,0,0,0.12); }
+.carousel-content { position: relative; z-index: 2; text-align: center; padding: 20px; color: #fff; }
+.carousel-icon { display: block; font-size: 3.5rem; margin-bottom: 12px; }
+.carousel-title { font-size: clamp(1rem,3vw,1.6rem); font-weight: 800; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.5); margin-bottom: 8px; line-height: 1.2; }
+.carousel-sub { font-size: clamp(0.8rem,2vw,1rem); color: rgba(255,255,255,0.85); }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.35); color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 1.6rem; cursor: pointer; transition: background 0.25s, transform 0.25s; display: flex; align-items: center; justify-content: center; }
+.carousel-prev { left: 14px; }
+.carousel-next { right: 14px; }
+.carousel-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-50%) scale(1.1); }
+.carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; }
+.carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.45); border: none; cursor: pointer; transition: background 0.25s, transform 0.25s; padding: 0; }
+.carousel-dot.active { background: #fff; transform: scale(1.3); }
+
+/* CERINTA 4 - TABEL SORTABIL */
+.sortable-section { margin-top: 30px; }
+.section-hint { font-size: 0.85em; color: #777; margin-bottom: 10px; font-style: italic; }
+.sortable-th { cursor: pointer; user-select: none; position: relative; padding-right: 28px !important; transition: background 0.25s; white-space: nowrap; }
+.sortable-th:hover { background: #3949ab !important; }
+.sortable-th::after { content: '\2195'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); opacity: 0.4; font-size: 0.8em; }
+.sortable-th.col-sorted { background: #e65100 !important; }
+.sortable-th.col-sorted::after { content: '\2191'; opacity: 1; }
+.sortable-th.col-sorted[data-dir='desc']::after { content: '\2193'; }
+.td-sorted { background: #fff8e1; font-weight: 600; }
+.btn-table-action { display: inline-block; padding: 4px 12px; background: #1a237e; color: #fff; border-radius: 4px; font-size: 0.82em; font-weight: 600; transition: filter 0.25s; text-decoration: none; }
+.btn-table-action:hover { filter: brightness(1.15); color: #fff; text-decoration: none; }
+.vertical-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+.vertical-table th.vert-header { background-color: #1a237e; color: #fff; padding: 10px 28px 10px 14px; text-align: left; white-space: nowrap; min-width: 140px; cursor: pointer; user-select: none; position: relative; transition: background 0.25s; }
+.vertical-table th.vert-header::after { content: '\2195'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); opacity: 0.4; font-size: 0.8em; }
+.vertical-table th.vert-header:hover { background-color: #3949ab; }
+.vertical-table th.vert-header.col-sorted { background-color: #e65100; }
+.vertical-table th.vert-header.col-sorted::after { content: '\2191'; opacity: 1; }
+.vertical-table th.vert-header.col-sorted[data-dir='desc']::after { content: '\2193'; }
+.vertical-table td { padding: 10px 14px; border: 1px solid #ddd; text-align: center; }
+.vertical-table tr:nth-child(even) td { background-color: #f5f7ff; }
+
+/* CERINTA 5 - LISTE COLAPSABILE */
+.collapsible-list { list-style: none; padding: 0; margin: 20px 0; }
+.collapsible-list > li { margin-bottom: 8px; }
+.collapsible-label { cursor: default; }
+.has-children > .collapsible-label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: #1a237e; padding: 8px 14px; border-radius: 4px; background: #f5f7ff; border: 1px solid #c5cae9; transition: background 0.25s, color 0.25s; user-select: none; }
+.has-children > .collapsible-label:hover { background: #e8eaf6; border-color: #3949ab; }
+.has-children > .collapsible-label::before { content: '\25B6'; font-size: 0.6em; transition: transform 0.25s; color: #3949ab; display: inline-block; }
+.has-children.expanded > .collapsible-label::before { transform: rotate(90deg); }
+.sub-list { display: none; margin-top: 6px; margin-left: 32px; padding: 0; animation: slideDown 0.25s ease; }
+.has-children.expanded > .sub-list { display: block; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* CERINTA 6 - CALCULATOR PRET LIVE */
+.calculator-section { margin-top: 30px; padding: 30px; background: linear-gradient(135deg,#f5f7ff 0%,#e8eaf6 100%); border-radius: 8px; border: 1px solid #c5cae9; }
+.calc-layout { display: flex; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+.calc-controls { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 18px; }
+.calc-field label { display: block; font-size: 0.78em; font-weight: 700; color: #5c6bc0; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.calc-checkboxes { display: flex; flex-direction: column; gap: 6px; }
+.calc-checkboxes label { display: flex; align-items: center; gap: 8px; font-size: 0.9em; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0 !important; color: #333 !important; cursor: pointer; }
+.calc-result { flex: 1; min-width: 260px; }
+.price-display { background: #1a237e; border-radius: 8px; padding: 28px; text-align: center; color: #fff; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(26,35,126,0.3); }
+.price-label { display: block; font-size: 0.7em; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+.price-value { display: block; font-size: clamp(2rem,5vw,2.8rem); font-weight: 900; color: #ffb74d; line-height: 1; }
+.price-note { display: block; font-size: 0.68em; color: rgba(255,255,255,0.35); margin-top: 8px; }
+.price-breakdown h3 { font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.8px; color: #777; margin-bottom: 12px; }
+.price-bar-row { display: grid; grid-template-columns: 120px 1fr 80px; align-items: center; gap: 8px; margin-bottom: 10px; }
+.bar-name { font-size: 0.78em; color: #777; white-space: nowrap; }
+.bar-track { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; background: #1a237e; border-radius: 4px; transition: width 0.4s ease; }
+.price-bar-row.depreciere .bar-fill { background: #c0392b; }
+.price-bar-row.dotari .bar-fill { background: #27ae60; }
+.bar-label { font-size: 0.75em; font-weight: 700; color: #333; text-align: right; white-space: nowrap; }
+

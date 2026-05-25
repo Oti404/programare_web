@@ -1,0 +1,238 @@
+:root {
+    --primary:      #3b82f6;
+    --primary-dark: #2563eb;
+    --danger:       #ef4444;
+    --danger-dark:  #dc2626;
+    --border:       #d1d5db;
+    --bg:           #f3f4f6;
+    --surface:      #ffffff;
+    --text:         #111827;
+    --text-muted:   #6b7280;
+    --radius:       6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+/* Panel / Card */
+.glass-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.container { width: 100%; }
+.container-large { max-width: 860px; }
+
+/* Typography */
+h1, h2, h3 {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* Forms */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--text);
+    font-size: 15px;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.form-control:disabled {
+    background: #f9fafb;
+    color: var(--text-muted);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 9px 20px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    width: 100%;
+}
+.btn-primary:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: #fff;
+}
+.btn-danger:hover {
+    background: var(--danger-dark);
+    text-decoration: none;
+}
+
+.btn-small {
+    padding: 6px 14px;
+    font-size: 13px;
+    width: auto;
+}
+
+/* Captcha */
+.captcha-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.captcha-img {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+/* Header / Nav */
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+}
+
+/* Profile image */
+.profile-img-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    display: block;
+    margin: 0 auto 12px auto;
+}
+
+/* Messages */
+.message-box {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.message-box .error,
+.error { color: var(--danger); }
+
+.message-box .success,
+.success { color: #16a34a; }
+
+.message-box { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.message-box:has(.error) { background: #fef2f2; border-color: #fecaca; }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: #f9fafb;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+tr:hover td { background: #f9fafb; }
+
+code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #374151;
+}

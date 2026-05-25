@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestiune Parc Auto - Dashboard Widgets</title>
+    <link id="theme-style" rel="stylesheet" href="style_responsive.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="style-switcher">
+            <span>Alege stil:</span>
+            <button onclick="document.getElementById('theme-style').href='style_horizontal.css'">Orizontal</button>
+            <button onclick="document.getElementById('theme-style').href='style_vertical.css'">Vertical</button>
+            <button onclick="document.getElementById('theme-style').href='style_responsive.css'">Responsive</button>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index5.html" class="icon-home"><span>Acasă</span></a></li>
+                <li><a href="edit5.html" class="icon-edit"><span>Adaugă/Editează</span></a></li>
+                <li><a href="sprites.html" class="icon-sprites"><span>Sprites CSS</span></a></li>
+                <li><a href="widgets.html" class="icon-widgets"><span>Dashboard</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Dashboard - Monitorizare Parc Auto</h1>
+        <p>Prezentare date prin intermediul componentelor de tip <strong>Info Cards</strong> și <strong>Widgets</strong>.</p>
+
+        <section class="dashboard-grid">
+            <div class="widget-card stats-card">
+                <div class="card-header">
+                    <h4>Vânzări Totale</h4>
+                </div>
+                <div class="card-body">
+                    <span class="stat-value">124</span>
+                    <span class="stat-label">Unități livrate</span>
+                </div>
+            </div>
+
+            <div class="widget-card stats-card">
+                <div class="card-header">
+                    <h4>Stoc Curent</h4>
+                </div>
+                <div class="card-body">
+                    <span class="stat-value">45</span>
+                    <span class="stat-label">Mașini disponibile</span>
+                </div>
+            </div>
+
+            <div class="widget-card stats-card">
+                <div class="card-header">
+                    <h4>Venituri Luna Curentă</h4>
+                </div>
+                <div class="card-body">
+                    <span class="stat-value">€ 1,850,000</span>
+                    <span class="stat-label">+15% față de luna trecută</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="status-panels">
+            <div class="panel info-panel">
+                <h4>Status Service Auto</h4>
+                <ul>
+                    <li><span class="status-dot online"></span> <strong>Popescu Ion</strong> - Activ</li>
+                    <li><span class="status-dot busy"></span> <strong>Ionescu Vasile</strong> - Ocupat</li>
+                </ul>
+            </div>
+            <div class="panel alert-panel">
+                <h4>Alerte Sistem</h4>
+                <div class="alert-item error">Eroare stoc ID: AUTO-442</div>
+                <div class="alert-item warning">Mentenanță duminică 08:00</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Gestiune Parc Auto - Laborator PW</p>
+    </footer>
+</body>
+</html>

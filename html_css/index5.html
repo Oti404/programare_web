@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestiune Parc Auto - HTML5</title>
+    <link id="theme-style" rel="stylesheet" href="style_responsive.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="style-switcher">
+            <span>Alege stil:</span>
+            <button onclick="document.getElementById('theme-style').href='style_horizontal.css'">Orizontal</button>
+            <button onclick="document.getElementById('theme-style').href='style_vertical.css'">Vertical</button>
+            <button onclick="document.getElementById('theme-style').href='style_responsive.css'">Responsive</button>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index5.html" class="icon-home"><span>Acasă</span></a></li>
+                <li><a href="edit5.html" class="icon-edit"><span>Adaugă/Editează</span></a></li>
+                <li><a href="sprites.html" class="icon-sprites"><span>Sprites CSS</span></a></li>
+                <li><a href="widgets.html" class="icon-widgets"><span>Dashboard</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+    <div title="Sistem Principal">
+        <h1>Gestiune Mașini - Panou Administrator (HTML5)</h1>
+        <h2>Inventar și Vânzări</h2>
+        <h3>Secțiunea Vehicule Noi</h3>
+        <h4>Atenție la datele introduse</h4>
+        <h5>Folosiți diacritice: ă, î, â, ș, ț</h5>
+        <h6>Vă mulțumim!</h6>
+
+        <p>
+            Aici putem <strong>adăuga</strong>, <b>modifica</b> și programa mașini în service.<br>
+            <span>Platformă optimizată pentru noile standarde web.</span>
+        </p>
+    </div>
+
+    <table>
+        <tr>
+            <th colspan="3">Lista Mașinilor din Parc</th>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="masina.jpg" alt="Imagine mașină" width="200" height="100">
+            </td>
+            <td colspan="2">Date Tehnice</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Marcă</td>
+                        <td>Dacia</td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>Duster</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <a href="edit5.html" target="_blank">Modifică Mașina</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="masina.jpg" alt="Imagine mașină" width="200" height="100">
+            </td>
+            <td colspan="2">Date Tehnice</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Marcă2</td>
+                        <td>Dacia2</td>
+                    </tr>
+                    <tr>
+                        <td>Model2</td>
+                        <td>Duster2</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <a href="edit5.html" target="_blank">Modifică Mașina</a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <img src="masina.jpg" alt="Imagine mașină" width="200" height="100">
+            </td>
+            <td colspan="2">Date Tehnice</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Marcă3</td>
+                        <td>Dacia3</td>
+                    </tr>
+                    <tr>
+                        <td>Model3</td>
+                        <td>Duster3</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <a href="edit5.html" target="_blank">Modifică Mașina</a>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <ul>
+        <li>Categoriile noastre auto:
+            <ol type="A" start="1">
+                <li>Sedan</li>
+                <li>Hatchback</li>
+                <li>SUV</li>
+            </ol>
+        </li>
+        <li>Servicii pentru clienți:
+            <ol type="I" start="1">
+                <li>Service Auto
+                    <ul>
+                        <li>Schimb ulei</li>
+                        <li>Diagnoză</li>
+                    </ul>
+                </li>
+                <li>Consiliere Vanzări</li>
+            </ol>
+        </li>
+    </ul>
+
+    <hr>
+
+    <form name="formularService" action="http://www.scs.ubbcluj.ro/test5" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Adăugare Mașină în Service & Recenzie (HTML5)</legend>
+
+            <table>
+                <tr>
+                    <td>Nume Client:</td>
+                    <td><input type="text" name="numeClient" size="30" maxlength="50" value="Numele dumneavoastră"></td>
+                </tr>
+                <tr>
+                    <td>Marcă Blocată:</td>
+                    <td><input type="text" name="marcaFixa" value="Dacia" readonly size="20"></td>
+                </tr>
+                <tr>
+                    <td>Parolă cont:</td>
+                    <td><input type="password" name="parola" size="20" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td>Stare Mașină:</td>
+                    <td>
+                        <input type="radio" name="stareAuto" value="nou" checked> Nouă
+                        <input type="radio" name="stareAuto" value="rulata"> Rulată
+                    </td>
+                </tr>
+                <tr>
+                    <td>Servicii dorite:</td>
+                    <td>
+                        <input type="checkbox" name="serv" value="ulei" checked> Ulei
+                        <input type="checkbox" name="serv" value="frane"> Frâne
+                        <input type="checkbox" name="serv" value="motor" disabled> Motor (Indisponibil)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kilometraj Actual:</td>
+                    <td><input type="number" name="km" max="500000" step="1000" value="10000"></td>
+                </tr>
+
+                <tr>
+                    <td>Mecanic alocat:</td>
+                    <td>
+                        <select name="mecanic">
+                            <option value="m1" selected>Popescu Ion (ă, î, â)</option>
+                            <option value="m2">Ionescu Vasile (ș, ț)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Probleme semnalate:</td>
+                    <td>
+                        <select name="probleme" multiple size="4">
+                            <option value="p1">Bătăi suspensie</option>
+                            <option value="p2">Martor bord aprins</option>
+                            <option value="p3">Fum eșapament</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fotografie Bord:</td>
+                    <td><input type="file" name="pozaBord"></td>
+                </tr>
+                <tr>
+                    <td>Recenzia clientului:</td>
+                    <td><textarea name="recenzie" cols="40"
+                            rows="5">Vă rugăm lăsați o recenzie aici folosind diacritice: ș, ț, ă, î, â.</textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="hidden" name="idClient" value="888999">
+                        <input type="submit" value="Salvează Datele">
+                        <input type="reset" value="Șterge Formularul">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <section class="wide-table-section">
+        <h2>Raport Complet Vânzări (Tabel Lat)</h2>
+        <div class="table-responsive-wrapper">
+            <table class="wide-table">
+                <thead>
+                    <tr>
+                        <th>ID Auto</th>
+                        <th>Marcă</th>
+                        <th>Model</th>
+                        <th>An Fabricație</th>
+                        <th>Culoare Vehicul</th>
+                        <th>Tip Comb.</th>
+                        <th>Transmisie</th>
+                        <th>Rulaj (km)</th>
+                        <th>Preț (EUR)</th>
+                        <th>Stare Curentă</th>
+                        <th>Acțiuni Disponibile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="ID Auto">AUTO-001</td><td data-label="Marcă">Dacia</td><td data-label="Model">Duster</td><td data-label="An Fab">2023</td><td data-label="Culoare">Alb Arctic</td><td data-label="Tip Comb.">Benzină</td><td data-label="Transmisie">Manuală</td><td data-label="Rulaj">10,000</td><td data-label="Preț">15,000</td><td data-label="Stare">În stoc (Nou)</td><td data-label="Acțiune"><a href="edit5.html">Modifică</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="ID Auto">AUTO-002</td><td data-label="Marcă">Renault</td><td data-label="Model">Clio</td><td data-label="An Fab">2022</td><td data-label="Culoare">Roșu Foc</td><td data-label="Tip Comb.">Hibrid</td><td data-label="Transmisie">Automată</td><td data-label="Rulaj">35,000</td><td data-label="Preț">12,500</td><td data-label="Stare">Rulată</td><td data-label="Acțiune"><a href="edit5.html">Modifică</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="ID Auto">AUTO-003</td><td data-label="Marcă">Toyota</td><td data-label="Model">Corolla</td><td data-label="An Fab">2021</td><td data-label="Culoare">Negru Perlat</td><td data-label="Tip Comb.">Hibrid</td><td data-label="Transmisie">Automată</td><td data-label="Rulaj">45,000</td><td data-label="Preț">18,000</td><td data-label="Stare">Rulată</td><td data-label="Acțiune"><a href="edit5.html">Modifică</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    </main>
+</body>
+
+</html>

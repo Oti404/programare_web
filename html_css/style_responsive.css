@@ -1,0 +1,748 @@
+/* ================================================
+   STIL 3: RESPONSIVE - MOBILE FIRST
+   CSS Custom Properties (Variabile CSS) - cerinta obligatorie
+   Minimum 2 media queries
+   Flexbox + Grid
+   Selectori: tip, clasa, id, descendenti, :hover, :focus,
+              :nth-child, ::before, ::after
+   ================================================ */
+
+/* ================================================
+   VARIABILE CSS (CSS Custom Properties)
+   ================================================ */
+:root {
+    /* Culori principale */
+    --primary:        #2c3e50;
+    --primary-light:  #34495e;
+    --accent:         #e67e22;
+    --accent-light:   #f39c12;
+    --success:        #27ae60;
+    --danger:         #c0392b;
+    --warning:        #e67e22;
+
+    /* Fundaluri */
+    --bg:             #ecf0f1;
+    --surface:        #ffffff;
+    --surface-alt:    #f8f9fa;
+
+    /* Texte */
+    --text:           #2c3e50;
+    --text-muted:     #7f8c8d;
+    --text-on-dark:   #ffffff;
+
+    /* Spatieri */
+    --spacing-xs:     8px;
+    --spacing-sm:     12px;
+    --spacing:        20px;
+    --spacing-lg:     32px;
+
+    /* Borduri si raze */
+    --radius-sm:      4px;
+    --radius:         8px;
+    --radius-lg:      16px;
+    --border-color:   #dde1e7;
+
+    /* Umbre */
+    --shadow-sm:      0 2px 4px rgba(0,0,0,0.06);
+    --shadow:         0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg:      0 8px 24px rgba(0,0,0,0.14);
+
+    /* Tipografie */
+    --font:           'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-sm:   0.85rem;
+    --font-size:      1rem;
+    --font-size-lg:   1.15rem;
+
+    /* Tranzitii */
+    --transition:     0.25s ease;
+}
+
+/* ================================================
+   RESET & BAZA
+   ================================================ */
+
+/* Selector de TIP */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Selector de TIP */
+body {
+    font-family: var(--font);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: var(--font-size);
+}
+
+/* Selector de TIP */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--accent-light);
+    text-decoration: underline;
+}
+
+/* Selectori de TIP */
+h1 { font-size: 1.8rem; margin-bottom: var(--spacing); color: var(--primary); }
+h2 { font-size: 1.4rem; margin-bottom: var(--spacing-sm); color: var(--primary); }
+h3 { font-size: 1.15rem; margin-bottom: var(--spacing-xs); color: var(--primary-light); }
+h4 { font-size: 0.95rem; margin-bottom: var(--spacing-xs); color: var(--primary-light); }
+h5, h6 { font-size: 0.85rem; color: var(--text-muted); }
+
+/* ================================================
+   HEADER & MENIU
+   Design: mobile-first = meniu stacked (vertical pe mobil)
+   ================================================ */
+
+/* Selector de clasa */
+.app-header {
+    background-color: var(--primary);
+    color: var(--text-on-dark);
+    padding: var(--spacing-sm) var(--spacing);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+/* Selector de clasa */
+.style-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Selector descendent: clasa -> tip */
+.style-switcher span {
+    color: rgba(255,255,255,0.6);
+    font-size: var(--font-size-sm);
+}
+
+/* Selector descendent */
+.style-switcher button {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--text-on-dark);
+    padding: 5px 14px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    transition: background var(--transition);
+}
+
+/* Pseudo-clasa :hover */
+.style-switcher button:hover {
+    background: rgba(255,255,255,0.28);
+}
+
+/* Selector descendent */
+.main-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* MOBILE FIRST: vertical */
+    gap: 4px;
+}
+
+/* Selector descendent */
+.main-menu a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 10px var(--spacing-sm);
+    border-radius: var(--radius);
+    font-size: var(--font-size-sm);
+    transition: background var(--transition), color var(--transition);
+}
+
+/* Pseudo-clasa :hover */
+.main-menu a:hover {
+    background: rgba(255,255,255,0.15);
+    color: var(--text-on-dark);
+    text-decoration: none;
+}
+
+/* Pseudo-clasa :focus */
+.main-menu a:focus {
+    outline: 2px solid var(--accent);
+    color: var(--text-on-dark);
+}
+
+/* CSS Sprites in meniu - SVG data URI */
+.main-menu a::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='20'%3E%3C!-- Home (x=0) --%3E%3Cpolygon points='10,2 18,9 18,18 13,18 13,13 7,13 7,18 2,18 2,9' fill='white'/%3E%3Crect x='8' y='13' width='4' height='5' fill='white'/%3E%3C!-- Edit (x=20) --%3E%3Cpath d='M24 14 l7-7 2 2-7 7z' fill='white'/%3E%3Cpolygon points='23,16 21,19 26,18' fill='white'/%3E%3Crect x='27' y='3' width='4' height='11' rx='1' transform='rotate(45 29 8)' fill='white'/%3E%3C!-- Grid (x=40) --%3E%3Crect x='41' y='3' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='48' y='3' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='55' y='3' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='41' y='10' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='48' y='10' width='5' height='5' rx='1' fill='white'/%3E%3Crect x='55' y='10' width='5' height='5' rx='1' fill='white'/%3E%3C!-- Dashboard (x=60) --%3E%3Cpath d='M70 16 A8 8 0 0 1 62 16' stroke='white' stroke-width='2' fill='none'/%3E%3Cline x1='70' y1='10' x2='66' y2='14' stroke='white' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='70' cy='16' r='1.5' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 80px 20px;
+    flex-shrink: 0;
+}
+
+/* Selectori de clasa pentru sprite-uri */
+.icon-home::before    { background-position: 0 0; }
+.icon-edit::before    { background-position: -20px 0; }
+.icon-sprites::before { background-position: -40px 0; }
+.icon-widgets::before { background-position: -60px 0; }
+
+/* ================================================
+   CONTAINER & LAYOUT
+   ================================================ */
+
+/* Selector de clasa */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: var(--spacing) auto;
+    padding: var(--spacing);
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ================================================
+   TABELE CU SUPORT RESPONSIVE COMPLET
+   ================================================ */
+
+/* Selector de clasa */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    margin: var(--spacing) 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Selector de TIP */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+}
+
+/* Selector de TIP */
+th {
+    background-color: var(--primary);
+    color: var(--text-on-dark);
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Selector de TIP */
+td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Pseudo-clasa :nth-child */
+tbody tr:nth-child(even) {
+    background-color: var(--surface-alt);
+}
+
+/* Pseudo-clasa :hover */
+tbody tr:hover {
+    background-color: #fef9f3;
+}
+
+/* Selector de clasa */
+.wide-table {
+    min-width: 900px;
+}
+
+.wide-table-section {
+    margin-top: var(--spacing-lg);
+}
+
+.wide-table-section h2 {
+    font-size: 1.1rem;
+}
+
+/* ================================================
+   FORMULAR
+   ================================================ */
+
+/* Selector de TIP */
+fieldset {
+    border: none;
+    background: var(--surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    margin: var(--spacing) 0;
+}
+
+/* Selector de TIP */
+legend {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: var(--spacing);
+    width: 100%;
+}
+
+/* Pseudo-element ::after pe legend */
+legend::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 6px;
+}
+
+/* Selector de atribut */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    background: var(--surface-alt);
+    border: 2px solid transparent;
+    padding: 12px var(--spacing-sm);
+    border-radius: var(--radius);
+    font-size: var(--font-size);
+    font-family: var(--font);
+    color: var(--text);
+    margin: 6px 0 var(--spacing-sm);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+/* Pseudo-clasa :focus */
+input:focus,
+textarea:focus,
+select:focus {
+    background: var(--surface);
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.15);
+}
+
+/* Selector de atribut */
+input[type="submit"],
+input[type="reset"] {
+    display: inline-block;
+    padding: 12px var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: var(--font-size);
+    font-family: var(--font);
+    transition: filter var(--transition), transform var(--transition);
+}
+
+input[type="submit"] {
+    background: var(--accent);
+    color: var(--text-on-dark);
+    margin-right: var(--spacing-xs);
+}
+
+input[type="reset"] {
+    background: transparent;
+    color: var(--danger);
+    border: 2px solid var(--danger);
+}
+
+/* Pseudo-clasa :hover */
+input[type="submit"]:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+input[type="reset"]:hover {
+    background: #fdecea;
+}
+
+/* ================================================
+   DASHBOARD - WIDGETS
+   (pe mobile: 1 coloana, tablet: 2, desktop: 3)
+   ================================================ */
+
+/* Selector de clasa */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coloana pe mobil */
+    gap: var(--spacing);
+    margin-top: var(--spacing);
+}
+
+/* Selector de clasa */
+.widget-card {
+    background: var(--surface);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--accent);
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+
+/* Pseudo-clasa :hover pe selector de clasa */
+.widget-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* Selector descendent */
+.widget-card .card-header h4 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Selector de clasa */
+.stat-value {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.1;
+    margin-top: 4px;
+}
+
+/* Selector de clasa */
+.stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    display: block;
+    margin-top: 6px;
+}
+
+/* ================================================
+   PANOURI STATUS
+   ================================================ */
+
+/* Selector de clasa */
+.status-panels {
+    display: grid;
+    grid-template-columns: 1fr; /* O coloana pe mobil */
+    gap: var(--spacing);
+    margin-top: var(--spacing);
+}
+
+/* Selector de clasa */
+.panel {
+    background: var(--surface);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+/* Selector descendent */
+.panel h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Selectori descendenti */
+.panel ul { list-style: none; }
+.panel ul li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 6px 0;
+    font-size: var(--font-size-sm);
+    border-bottom: 1px solid var(--surface-alt);
+}
+
+/* Selector de clasa */
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Selectori de clasa modificatori */
+.status-dot.online { background-color: var(--success); }
+.status-dot.busy   { background-color: var(--warning); }
+
+/* Selector de clasa */
+.alert-item {
+    padding: 10px var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+    border-left: 4px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Pseudo-element ::before pe alert */
+.alert-item::before {
+    content: '⚠';
+    font-size: 1em;
+    flex-shrink: 0;
+}
+
+.alert-item.error {
+    background-color: #fdecea;
+    border-left-color: var(--danger);
+    color: #922b21;
+}
+
+.alert-item.error::before { content: '✕'; }
+
+.alert-item.warning {
+    background-color: #fef9f0;
+    border-left-color: var(--warning);
+    color: #784212;
+}
+
+/* ================================================
+   PAGINA SPRITES
+   ================================================ */
+
+/* Selector de clasa */
+.sprite-demo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 coloane pe mobil */
+    gap: var(--spacing);
+    margin: var(--spacing) 0;
+}
+
+/* Selector de clasa */
+.sprite-card {
+    text-align: center;
+    border: 2px dashed var(--border-color);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    background: var(--surface-alt);
+    transition: background var(--transition), border-color var(--transition);
+}
+
+/* Pseudo-clasa :hover */
+.sprite-card:hover {
+    background: #fef9f3;
+    border-color: var(--accent);
+}
+
+.sprite-card h3 {
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+    color: var(--primary);
+}
+
+.sprite-card p {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Selector de clasa - CSS Sprites cu SVG data URI (iconite mari pentru pagina Demo) */
+.sprite-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    /* SVG Sprite sheet - aceeasi imagine, pozitii diferite pentru fiecare icoana */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='40'%3E%3C!-- Home (x=0, 40px wide) --%3E%3Cpolygon points='20,5 36,18 36,36 26,36 26,26 14,26 14,36 4,36 4,18' fill='%23e67e22'/%3E%3Crect x='15' y='26' width='10' height='10' fill='%23e67e22'/%3E%3C!-- Edit (x=40, 40px wide) --%3E%3Cpath d='M48 28 l14-14 4 4-14 14z' fill='%23e67e22'/%3E%3Cpolygon points='46,31 43,38 52,36' fill='%23e67e22'/%3E%3Crect x='58' y='8' width='6' height='18' rx='2' transform='rotate(45 61 17)' fill='%23e67e22'/%3E%3C!-- Grid (x=80, 40px wide) --%3E%3Crect x='83' y='7' width='9' height='9' rx='1' fill='%23e67e22'/%3E%3Crect x='95' y='7' width='9' height='9' rx='1' fill='%23e67e22'/%3E%3Crect x='107' y='7' width='9' height='9' rx='1' fill='%23e67e22'/%3E%3Crect x='83' y='19' width='9' height='9' rx='1' fill='%23e67e22'/%3E%3Crect x='95' y='19' width='9' height='9' rx='1' fill='%23e67e22'/%3E%3Crect x='107' y='19' width='9' height='9' rx='1' fill='%23e67e22'/%3E%3C!-- Dashboard (x=120, 40px wide) --%3E%3Cpath d='M140 33 A16 16 0 0 1 124 33' stroke='%23e67e22' stroke-width='3' fill='none'/%3E%3Cline x1='140' y1='20' x2='135' y2='27' stroke='%23e67e22' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='140' cy='33' r='3' fill='%23e67e22'/%3E%3Cline x1='124' y1='22' x2='128' y2='27' stroke='%23e67e22' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='156' y1='22' x2='152' y2='27' stroke='%23e67e22' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 160px 40px;
+    margin: 0 auto var(--spacing-xs);
+}
+
+/* Selectori de clasa - pozitia fiecarei iconite in sprite */
+.icon-home-large    { background-position: 0 0; }
+.icon-edit-large    { background-position: -40px 0; }
+.icon-sprites-large { background-position: -80px 0; }
+.icon-widgets-large { background-position: -120px 0; }
+
+/* Selector de clasa */
+.sprite-info {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing);
+    background: var(--surface-alt);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.sprite-info img {
+    border: 1px solid var(--border-color);
+    margin: var(--spacing-xs) auto;
+    display: block;
+    max-width: 100%;
+    background: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 12px 12px;
+}
+
+/* Selector de clasa */
+.caption {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin-top: var(--spacing-xs);
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+
+/* Selector de clasa */
+.app-footer {
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing);
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--spacing-lg);
+    background: var(--surface);
+}
+
+/* Pseudo-element ::before pe footer */
+.app-footer::before {
+    content: '🚗';
+    margin-right: var(--spacing-xs);
+}
+
+/* ================================================
+   MEDIA QUERY 1: Tableta (>= 600px)
+   ================================================ */
+@media (min-width: 600px) {
+
+    /* Meniu devine orizontal */
+    .main-menu ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* 2 coloane pentru dashboard */
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 2 coloane pentru panouri status */
+    .status-panels {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 4 coloane pentru sprite cards */
+    .sprite-demo-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Formular: campurile de pe tabele nu trebuie sa fie full-width */
+    fieldset table input[type="text"],
+    fieldset table input[type="password"],
+    fieldset table input[type="number"],
+    fieldset table textarea,
+    fieldset table select {
+        width: auto;
+    }
+}
+
+/* ================================================
+   MEDIA QUERY 2: Desktop (>= 992px)
+   ================================================ */
+@media (min-width: 992px) {
+
+    /* 3 coloane pentru dashboard */
+    .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Container mai lat */
+    .container {
+        padding: var(--spacing-lg);
+    }
+
+    /* Header mai compact */
+    .app-header {
+        padding: var(--spacing-xs) var(--spacing-lg);
+    }
+
+    /* Afisarea tabelului responsive doar cu scroll orizontal pe desktop */
+    .table-responsive-wrapper {
+        overflow-x: auto;
+    }
+}
+
+/* ================================================
+   MEDIA QUERY 3 (bonus): Tabel pe ecrane mici (< 600px)
+   Stivuire randurii pe dispozitive mobile
+   ================================================ */
+@media (max-width: 599px) {
+
+    /* Ascunde header-ul tabelului vizual (ramane pentru accesibilitate) */
+    .wide-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        visibility: hidden;
+    }
+
+    /* Fiecare element al tabelului devine block */
+    .wide-table,
+    .wide-table tbody,
+    .wide-table tr,
+    .wide-table td {
+        display: block;
+    }
+
+    /* Fiecare rand arata ca un card */
+    .wide-table tr {
+        margin-bottom: var(--spacing);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        background: var(--surface);
+        overflow: hidden;
+    }
+
+    /* Pseudo-element ::before pe td pentru eticheta coloanei */
+    .wide-table td {
+        border: none;
+        border-bottom: 1px solid var(--surface-alt);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        padding-left: 45%;
+        position: relative;
+        min-height: 36px;
+    }
+
+    .wide-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: var(--spacing-xs);
+        width: 42%;
+        font-weight: 700;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        padding-top: 2px;
+    }
+
+    /* Ultima celula din rand: actiuni */
+    .wide-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* Sprite demo: 1 coloana pe mobil */
+    .sprite-demo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

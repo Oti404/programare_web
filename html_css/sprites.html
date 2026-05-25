@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestiune Parc Auto - Sprites CSS</title>
+    <link id="theme-style" rel="stylesheet" href="style_responsive.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="style-switcher">
+            <span>Alege stil:</span>
+            <button onclick="document.getElementById('theme-style').href='style_horizontal.css'">Orizontal</button>
+            <button onclick="document.getElementById('theme-style').href='style_vertical.css'">Vertical</button>
+            <button onclick="document.getElementById('theme-style').href='style_responsive.css'">Responsive</button>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index5.html" class="icon-home"><span>Acasă</span></a></li>
+                <li><a href="edit5.html" class="icon-edit"><span>Adaugă/Editează</span></a></li>
+                <li><a href="sprites.html" class="icon-sprites"><span>Sprites CSS</span></a></li>
+                <li><a href="widgets.html" class="icon-widgets"><span>Dashboard</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Demonstrație CSS Sprites</h1>
+        <p>Această pagină utilizează tehnica <strong>CSS Sprites</strong> pentru a reduce numărul de cereri HTTP către server prin combinarea mai multor iconițe într-o singură imagine.</p>
+
+        <section class="sprite-demo-grid">
+            <div class="sprite-card">
+                <div class="sprite-icon icon-home-large"></div>
+                <h3>Acasă</h3>
+                <p>Iconiță extrasă din sprite pentru pagina principală.</p>
+            </div>
+            <div class="sprite-card">
+                <div class="sprite-icon icon-edit-large"></div>
+                <h3>Editare</h3>
+                <p>Simbol pentru modificarea datelor vehiculelor.</p>
+            </div>
+            <div class="sprite-card">
+                <div class="sprite-icon icon-sprites-large"></div>
+                <h3>Sprites</h3>
+                <p>Iconița ce reprezintă această secțiune.</p>
+            </div>
+            <div class="sprite-card">
+                <div class="sprite-icon icon-widgets-large"></div>
+                <h3>Widgets</h3>
+                <p>Monitorizare și dashboard.</p>
+            </div>
+        </section>
+
+        <section class="sprite-info">
+            <h2>Imaginea originală (Sprite Sheet - SVG)</h2>
+            <div class="sprite-image-container">
+                <!-- Sprite sheet-ul SVG, afisat la dimensiunea reala 160x40px, scalat vizual -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="320" height="80"
+                     style="border:1px solid #ccc; background:#2c3e50; display:block; margin:10px auto; border-radius:4px;"
+                     viewBox="0 0 160 40">
+                    <!-- Linie de separare vizuala intre icoane -->
+                    <line x1="40" y1="0" x2="40" y2="40" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="80" y2="40" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                    <line x1="120" y1="0" x2="120" y2="40" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                    <!-- Icon 1: Home (x=0) -->
+                    <polygon points="20,5 36,18 36,36 26,36 26,26 14,26 14,36 4,36 4,18" fill="white"/>
+                    <rect x="15" y="26" width="10" height="10" fill="white"/>
+                    <!-- Icon 2: Edit/Pencil (x=40) -->
+                    <path d="M48 28 l14-14 4 4-14 14z" fill="white"/>
+                    <polygon points="46,31 43,38 52,36" fill="white"/>
+                    <rect x="58" y="8" width="6" height="18" rx="2" transform="rotate(45 61 17)" fill="white"/>
+                    <!-- Icon 3: Grid (x=80) -->
+                    <rect x="83" y="7" width="9" height="9" rx="1" fill="white"/>
+                    <rect x="95" y="7" width="9" height="9" rx="1" fill="white"/>
+                    <rect x="107" y="7" width="9" height="9" rx="1" fill="white"/>
+                    <rect x="83" y="19" width="9" height="9" rx="1" fill="white"/>
+                    <rect x="95" y="19" width="9" height="9" rx="1" fill="white"/>
+                    <rect x="107" y="19" width="9" height="9" rx="1" fill="white"/>
+                    <!-- Icon 4: Dashboard (x=120) -->
+                    <path d="M140 33 A16 16 0 0 1 124 33" stroke="white" stroke-width="3" fill="none"/>
+                    <line x1="140" y1="20" x2="135" y2="27" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="140" cy="33" r="3" fill="white"/>
+                    <line x1="124" y1="22" x2="128" y2="27" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="156" y1="22" x2="152" y2="27" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p class="caption">Sprite sheet SVG: 160×40px cu 4 iconițe × 40px fiecare. CSS-ul selectează icoana prin <code>background-position</code>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Gestiune Parc Auto - Laborator PW</p>
+    </footer>
+</body>
+</html>
