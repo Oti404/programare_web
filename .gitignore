@@ -1,3 +1,7 @@
 # Ignora tot continutul din securitate_web, dar pastreaza folderul
 securitate_web/*
 !securitate_web/.gitkeep
+
+# Credentiale locale (nu se trimite pe git)
+php/config.local.php
+php/database.sqlite
