@@ -4,30 +4,20 @@ require_once 'config.php';
 // Verificare Remember Me cookie
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_token'])) {
     $token = $_COOKIE['remember_token'];
-    $conn = getMysqliConnection();
-    if ($conn) {
-        $stmt = $conn->prepare("SELECT u.id, u.username, r.name as role_name FROM users u LEFT JOIN roles r ON u.role_id = r.id WHERE u.remember_token = ?");
-        $stmt->bind_param("s", $token);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows === 1) {
-            $user = $result->fetch_assoc();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role_name'] = $user['role_name'];
-            
-            // Log in SQLite (PDO)
-            $pdo = getPDOConnection();
-            $stmtPDO = $pdo->prepare("INSERT INTO logs (user_id, action) VALUES (?, 'Login prin Remember Me')");
-            $stmtPDO->execute([$user['id']]);
-
-            header("Location: index.php");
-            exit;
-        }
+    $pdo = getPDOConnection();
+    $stmt = $pdo->prepare("SELECT u.id, u.username, r.name as role_name FROM users u LEFT JOIN roles r ON u.role_id = r.id WHERE u.remember_token = ?");
+    $stmt->execute([$token]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        $_SESSION['user_id']   = $user['id'];
+        $_SESSION['username']  = $user['username'];
+        $_SESSION['role_name'] = $user['role_name'];
+        $pdo->prepare("INSERT INTO logs (user_id, action) VALUES (?, 'Login prin Remember Me')")->execute([$user['id']]);
+        header("Location: index.php");
+        exit;
     }
 }
 
-// Daca e deja autentificat, mergi la dashboard
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
@@ -41,52 +31,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $captcha  = $_POST['captcha'] ?? '';
     $remember = isset($_POST['remember']);
 
-    // Verificare CAPTCHA fata de valoarea salvata la afisarea formularului (GET)
     $captcha_ok = !empty($captcha) && strcasecmp(trim($captcha), $_SESSION['captcha_code'] ?? '') === 0;
     if (!$captcha_ok) {
         $error = "Cod CAPTCHA incorect!";
     } else {
-        $conn = getMysqliConnection();
-        if (!$conn) {
-            $error = "Eroare la conectarea cu baza de date (Rulați setup.php mai întâi).";
-        } else {
-            $stmt = $conn->prepare("SELECT u.id, u.username, u.password_hash, r.name as role_name FROM users u LEFT JOIN roles r ON u.role_id = r.id WHERE u.username = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
+        $pdo  = getPDOConnection();
+        $stmt = $pdo->prepare("SELECT u.id, u.username, u.password_hash, r.name as role_name FROM users u LEFT JOIN roles r ON u.role_id = r.id WHERE u.username = ?");
+        $stmt->execute([$username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($result->num_rows === 1) {
-                $user = $result->fetch_assoc();
-                if (password_verify($password, $user['password_hash'])) {
-                    $_SESSION['user_id']   = $user['id'];
-                    $_SESSION['username']  = $user['username'];
-                    $_SESSION['role_name'] = $user['role_name'];
+        if ($user && password_verify($password, $user['password_hash'])) {
+            $_SESSION['user_id']   = $user['id'];
+            $_SESSION['username']  = $user['username'];
+            $_SESSION['role_name'] = $user['role_name'];
 
-                    $pdo = getPDOConnection();
-                    $pdo->prepare("INSERT INTO logs (user_id, action) VALUES (?, 'Login Standard')")->execute([$user['id']]);
+            $pdo->prepare("INSERT INTO logs (user_id, action) VALUES (?, 'Login Standard')")->execute([$user['id']]);
 
-                    if ($remember) {
-                        $token = bin2hex(random_bytes(32));
-                        setcookie('remember_token', $token, time() + (86400 * 30), "/");
-                        $upd = $conn->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
-                        $upd->bind_param("si", $token, $user['id']);
-                        $upd->execute();
-                    }
-
-                    header("Location: index.php");
-                    exit;
-                } else {
-                    $error = "Parolă incorectă!";
-                }
-            } else {
-                $error = "Utilizatorul nu există!";
+            if ($remember) {
+                $token = bin2hex(random_bytes(32));
+                setcookie('remember_token', $token, time() + (86400 * 30), "/");
+                $pdo->prepare("UPDATE users SET remember_token = ? WHERE id = ?")->execute([$token, $user['id']]);
             }
-            $conn->close();
+
+            header("Location: index.php");
+            exit;
+        } else {
+            $error = $user ? "Parola incorecta!" : "Utilizatorul nu exista!";
         }
     }
 }
 
-// Generare CAPTCHA nou - DUPA procesarea POST, pentru afisarea formularului
 $captcha_a = rand(1, 15);
 $captcha_b = rand(1, 15);
 $_SESSION['captcha_code'] = (string)($captcha_a + $captcha_b);
@@ -101,7 +75,7 @@ $_SESSION['captcha_code'] = (string)($captcha_a + $captcha_b);
 <body>
     <div class="container glass-panel">
         <h1>Autentificare</h1>
-        
+
         <?php if (!empty($error)) echo "<div class='message-box error'>$error</div>"; ?>
 
         <form method="POST" action="login.php">
@@ -110,26 +84,23 @@ $_SESSION['captcha_code'] = (string)($captcha_a + $captcha_b);
                 <input type="text" id="username" name="username" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="password">Parolă</label>
+                <label for="password">Parola</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
-            
             <div class="form-group">
-                <label>CAPTCHA: Cât face <strong><?= $captcha_a ?> + <?= $captcha_b ?> = ?</strong></label>
-                <input type="text" name="captcha" class="form-control" placeholder="Introduceți rezultatul" required autocomplete="off">
+                <label>CAPTCHA: Cat face <strong><?= $captcha_a ?> + <?= $captcha_b ?> = ?</strong></label>
+                <input type="text" name="captcha" class="form-control" placeholder="Introduceti rezultatul" required autocomplete="off">
             </div>
-
             <div class="form-group">
                 <label class="checkbox-group">
-                    <input type="checkbox" name="remember"> Tine-mă minte
+                    <input type="checkbox" name="remember"> Tine-ma minte
                 </label>
             </div>
-
             <button type="submit" class="btn btn-primary">Autentificare</button>
         </form>
 
         <div style="margin-top: 20px; text-align: center;">
-            <a href="setup.php">Inițializare / Setup DB</a>
+            <a href="setup.php">Initializare / Setup DB</a>
         </div>
     </div>
 </body>

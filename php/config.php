@@ -1,53 +1,30 @@
 <?php
 session_start();
 
-// Credentiale implicite (local XAMPP)
-$mysql_host = '127.0.0.1';
-$mysql_user = 'root';
-$mysql_pass = '';
-$mysql_db   = 'pw_lab7';
-$mysql_port = 3306;
-
-// Daca exista config.local.php (pe server, gitignored), il folosim
-if (file_exists(__DIR__ . '/config.local.php')) {
-    require_once __DIR__ . '/config.local.php';
-}
-
-// Date pentru baza de date SQLite (utilizată cu PDO)
 $sqlite_file = __DIR__ . '/database.sqlite';
 
-/**
- * Conectare MySQL (mysqli)
- */
-function getMysqliConnection() {
-    global $mysql_host, $mysql_user, $mysql_pass, $mysql_db, $mysql_port;
-    mysqli_report(MYSQLI_REPORT_OFF);
-    $conn = @new mysqli($mysql_host, $mysql_user, $mysql_pass, $mysql_db, $mysql_port);
-    if ($conn->connect_error) {
-        return null;
-    }
-    $conn->set_charset("utf8mb4");
-    return $conn;
-}
-
-/**
- * Conectare la MySQL (fara sa selectam DB, folosit pt creare DB in setup.php)
- */
-function getMysqliConnectionNoDB() {
-    global $mysql_host, $mysql_user, $mysql_pass, $mysql_port;
-    mysqli_report(MYSQLI_REPORT_OFF);
-    $conn = @new mysqli($mysql_host, $mysql_user, $mysql_pass, '', $mysql_port);
-    return $conn;
-}
-
-/**
- * Conectare SQLite (PDO)
- */
 function getPDOConnection() {
     global $sqlite_file;
     try {
         $pdo = new PDO("sqlite:" . $sqlite_file);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->exec("PRAGMA foreign_keys = ON");
+        $pdo->exec("CREATE TABLE IF NOT EXISTS roles (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR(50) NOT NULL UNIQUE
+        )");
+        $pdo->exec("CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            password_hash VARCHAR(255) NOT NULL,
+            full_name VARCHAR(100),
+            bio TEXT,
+            city VARCHAR(100),
+            profile_pic VARCHAR(255),
+            remember_token VARCHAR(255),
+            role_id INTEGER,
+            FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE SET NULL
+        )");
         $pdo->exec("CREATE TABLE IF NOT EXISTS logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,

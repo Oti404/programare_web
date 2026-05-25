@@ -1,16 +1,13 @@
 <?php
 require_once 'config.php';
 
-// Log out in SQLite
 if (isset($_SESSION['user_id'])) {
     try {
         $pdo = getPDOConnection();
-        $stmtPDO = $pdo->prepare("INSERT INTO logs (user_id, action) VALUES (?, 'Logout')");
-        $stmtPDO->execute([$_SESSION['user_id']]);
+        $pdo->prepare("INSERT INTO logs (user_id, action) VALUES (?, 'Logout')")->execute([$_SESSION['user_id']]);
     } catch (Exception $e) {}
 }
 
-// Distrugere sesiune
 $_SESSION = array();
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
@@ -21,19 +18,12 @@ if (ini_get("session.use_cookies")) {
 }
 session_destroy();
 
-// Ștergere Remember Me cookie din browser si DB
 if (isset($_COOKIE['remember_token'])) {
     $token = $_COOKIE['remember_token'];
-    
-    // Clear in DB
-    $conn = getMysqliConnection();
-    if ($conn) {
-        $stmt = $conn->prepare("UPDATE users SET remember_token = NULL WHERE remember_token = ?");
-        $stmt->bind_param("s", $token);
-        $stmt->execute();
-        $conn->close();
-    }
-
+    try {
+        $pdo = getPDOConnection();
+        $pdo->prepare("UPDATE users SET remember_token = NULL WHERE remember_token = ?")->execute([$token]);
+    } catch (Exception $e) {}
     setcookie('remember_token', '', time() - 3600, "/");
 }
 

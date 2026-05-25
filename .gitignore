@@ -2,6 +2,6 @@
 securitate_web/*
 !securitate_web/.gitkeep
 
-# Credentiale locale (nu se trimite pe git)
-php/config.local.php
+# Baza de date SQLite (se genereaza prin setup.php)
 php/database.sqlite
+php/uploads/
